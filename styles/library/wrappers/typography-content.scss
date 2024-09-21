@@ -1,0 +1,63 @@
+.typography-content {
+	font-weight: 400;
+	* {
+		line-height: 1.5;
+	}
+	strong {
+		font-weight: 700;
+	}
+	& > *:not(:last-child) {
+		margin-bottom: 1.4rem;
+	}
+	h2 {
+		font-size: 2.25rem;
+	}
+	h3 {
+		font-size: 1.75rem;
+	}
+	h2,
+	h3 {
+		&:not(:first-child) {
+			margin-top: 3rem;
+		}
+	}
+	h4 {
+		font-family: Plantin;
+		font-size: 1.5rem;
+		&:not(:first-child) {
+			margin-top: 2rem;
+		}
+	}
+	ul {
+		li:not(:last-child) {
+			margin-bottom: 1em;
+		}
+	}
+
+	table {
+		border-collapse: collapse;
+
+		width: 100%;
+		th,
+		td {
+			padding: 8px 16px;
+		}
+	}
+	thead {
+		border-bottom: 1px solid #f5f5f7;
+		th {
+			border: 1px solid #f5f5f7;
+			border-bottom: none;
+			text-align: left;
+			vertical-align: middle;
+			font-weight: 700;
+		}
+	}
+	tbody {
+		td {
+			background: #f5f5f7;
+			border: 1px solid #fff;
+			vertical-align: middle;
+		}
+	}
+}

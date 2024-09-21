@@ -1,0 +1,102 @@
+$large-desktop-width: 1680px;
+$middle-desktop-width: 1440px;
+$tablet-width: 1080px;
+$mobile-width: 740px;
+
+$breakpoints: (
+	'ldw': $large-desktop-width,
+	'mdw': $middle-desktop-width,
+	'tw': $tablet-width,
+	'mw': $mobile-width
+);
+
+:root {
+	--main-font-family: 'Inter Tight', sans-serif;
+
+	--main-line-height: 1.21;
+
+	--border-radius: 1rem;
+	@media (max-width: $tablet-width) {
+		--border-radius: 2rem;
+	}
+}
+
+$sizes: (
+	'1': (
+		'default': 1rem
+	),
+	'1-125': (
+		'default': 1.125rem,
+		'tw': 1rem
+	),
+	'1-25': (
+		'default': 1.25rem,
+		'tw': 1.125rem
+	),
+	'1-5': (
+		'default': 1.5rem,
+		'tw': 1.25rem
+	),
+	'1-75': (
+		'default': 1.75rem,
+		'tw': 1.5rem
+	),
+	'2': (
+		'default': 2rem,
+		'tw': 1.75rem
+	),
+	'2-5': (
+		'default': 2.5rem,
+		'tw': 2rem,
+		'mw': 1.75rem
+	),
+	'3': (
+		'default': 3rem,
+		'tw': 2.5rem,
+		'mw': 2rem
+	),
+	'3-5': (
+		'default': 3.5rem,
+		'tw': 3rem,
+		'mw': 2.5rem
+	),
+	'4': (
+		'default': 4rem,
+		'tw': 3rem,
+		'mw': 2.75rem
+	),
+	'4-5': (
+		'default': 4.5rem,
+		'tw': 3.5rem,
+		'mw': 3rem
+	),
+	'5': (
+		'default': 5rem,
+		'tw': 4.5rem,
+		'mw': 4rem
+	),
+	'5-5': (
+		'default': 5.5rem,
+		'tw': 4.5rem,
+		'mw': 4rem
+	),
+	'6-5': (
+		'default': 6.5rem,
+		'tw': 4.5rem,
+		'mw': 4rem
+	)
+);
+
+// global colors
+:root {
+	--color-black: #1d1d1f;
+	--color-semi-white: #fbfbfd;
+	--color-black: #101011;
+	--color-white: #fff;
+	--color-dark: #303030;
+	--color-semi-gray: #d4d4d4;
+	--color-bright-gray: #ededed;
+	--color-red: #e4121f;
+	--color-roman-silver: #80868e;
+	--color-metallic-bronze: #a57a45;
+}

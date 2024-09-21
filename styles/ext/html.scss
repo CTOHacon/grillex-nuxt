@@ -1,0 +1,22 @@
+@import 'global-font-size.mixin.scss';
+
+html {
+	scroll-behavior: smooth;
+	overflow-x: clip;
+	font-family: var(--main-font-family);
+	scroll-padding: calc(50vh - 2rem - var(--header-height));
+	background: #ededed;
+
+	font-family: 'Mulish';
+	line-height: 133%;
+
+	@include global-font-size;
+}
+
+* {
+	letter-spacing: -0.02em;
+	scrollbar-color: #e4121f #fff;
+	::-webkit-scrollbar-track {
+		background: #fff;
+	}
+}

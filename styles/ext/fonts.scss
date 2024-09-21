@@ -1,0 +1,13 @@
+@font-face {
+	font-family: 'AA Duke';
+	src: url('/fonts/AADuke-Fill.eot');
+	src: local('AA Duke Fill'), local('AADuke-Fill'),
+		url('/fonts/AADuke-Fill.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/AADuke-Fill.woff') format('woff'),
+		url('/fonts/AADuke-Fill.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap');
