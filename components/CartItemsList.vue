@@ -1,7 +1,7 @@
 <template>
 	<div class="cart-items-list">
 		<CartItemCard
-			v-for="item in cartStore.cartItems"
+			v-for="item in cartStore.cartItems.value"
 			:key="item.product_variation_id"
 			:cartItem="item"
 		/>

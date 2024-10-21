@@ -1,7 +1,7 @@
 <template>
 	<div class="contact-section">
 		<div class="contact-section__head contact-section__width-wrapper">
-			<SectionTitle :tagname="'h2'" class="contact-section__title">
+			<SectionTitle :tagname="'h2'" size="5-5">
 				{{ $t('ask_question') }}
 			</SectionTitle>
 			<p class="contact-section__text">
@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import MainContactForm from './MainContactForm.vue';
+import SectionTitle from './SectionTitle.vue';
 </script>
 
 <style scoped lang="scss">
@@ -52,10 +53,6 @@ import MainContactForm from './MainContactForm.vue';
 	@media (max-width: $tablet-width) {
 		grid-template-columns: 1fr;
 	}
-}
-.contact-section__title {
-	font-size: var(--size-5-5);
-	line-height: 0.75;
 }
 .contact-section__text {
 	font-size: var(--size-1-125);

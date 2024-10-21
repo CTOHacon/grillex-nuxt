@@ -9,38 +9,25 @@
 			:class="isScrollingToBottom"
 			:scrolled="isScrollingToBottom"
 		/>
-		<CatalogModalToggleButton class="header__toggle-catalog" />
 		<div
-			class="none block-tw mr-1"
+			class="none block-tw pr-1"
 			v-if="webPageStore.data?.type === 'product-page'"
 		>
-			<!-- <BaseIconButtonWithCount
+			<BaseIconButtonWithCount
 				icon="cart"
-				:count="cartCount"
-				:area-label="translate('Кошик')"
-				@click="toggleModal('cart')"
+				:count="cartStore.totalCartQuantity.value"
+				@click="modalStore.toggleModal('cart')"
 				class="none fs-0-875"
-			/> -->
+			/>
 		</div>
-		<!-- <CatalogModalToggleButton class="header__toggle-catalog" /> -->
-		<!-- <ProductsSearchForm class="flex-col-5 flex-mdw-col-4 none-tw" /> -->
-		<div class="header__buttons-group">
+		<CatalogModalToggleButton class="header__toggle-catalog" />
+		<ProductsSearchForm class="header__search none-tw" />
+		<UsePreloader class="header__buttons-group">
 			<HeaderFavouritesButton
 				:class="isScrollingToBottom ? 'fs-0-875' : 'fs-1'"
 			/>
-
-			<CartModalTogleButton :active="false" />
-		</div>
-		<!-- <HeaderButtonsGroup
-			class="flex-col-3 flex-mdw-col-4 justify-end none-tw"
-		>
-			<LikedProductsButton
-				:class="isScrollingToBottom ? 'fs-0-875' : 'fs-1'"
-			/>
-			<ProductsComparisonButton
-				:class="isScrollingToBottom ? 'fs-0-875' : 'fs-1'"
-			/>
-		</HeaderButtonsGroup> -->
+			<CartModalToggleButton :active="false" />
+		</UsePreloader>
 	</BaseHeader>
 </template>
 
@@ -50,21 +37,17 @@ import HeaderLogo from './HeaderLogo.vue';
 import useWebPageStore from '~/store/useWebPageStore';
 import BaseHeader from './BaseHeader.vue';
 import CatalogModalToggleButton from './CatalogModalToggleButton.vue';
-import CartModalTogleButton from './CartModalTogleButton.vue';
+import CartModalToggleButton from './CartModalToggleButton.vue';
 import HeaderFavouritesButton from './HeaderFavouritesButton.vue';
-// import CatalogModalToggleButton from './CatalogModalToggleButton.vue';
-// import ProductsSearchForm from './ProductsSearchForm.vue';
-// import HeaderButtonsGroup from './HeaderButtonsGroup.vue';
-// import BaseIconButtonWithCount from './BaseIconButtonWithCount.vue';
-// import CartModalTogleButton from './CartModalTogleButton.vue';
-// import translate from '@/helpers/translate';
-// import { cartCount } from '@/composables/cartState';
-// import { toggleModal } from '@/composables/modalState';
-// import LikedProductsButton from './LikedProductsButton.vue';
-// import ProductsComparisonButton from './ProductsComparisonButton.vue';
+import UsePreloader from './UsePreloader.vue';
+import useCartStore from '~/store/useCartStore';
+import useModalStateStore from '~/store/useModalStateStore';
 
 const isScrollingToBottom = ref<boolean>(false);
 const webPageStore = useWebPageStore();
+
+const cartStore = useCartStore();
+const modalStore = useModalStateStore();
 </script>
 
 <style scoped lang="scss">
@@ -90,6 +73,12 @@ const webPageStore = useWebPageStore();
 	margin-right: 2.75rem;
 	@media (max-width: $tablet-width) {
 		margin-right: 0;
+	}
+}
+
+.header__search {
+	@media (max-width: $tablet-width) {
+		display: none;
 	}
 }
 

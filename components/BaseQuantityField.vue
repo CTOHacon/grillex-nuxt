@@ -120,7 +120,6 @@ const decrement = () => {
 	}
 
 	&:disabled {
-		border: 0.0625rem solid rgba(149, 149, 150, 0.24);
 		opacity: 0.25;
 		pointer-events: none;
 		cursor: not-allowed;

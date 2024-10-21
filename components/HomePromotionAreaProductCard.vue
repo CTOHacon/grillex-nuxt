@@ -34,7 +34,7 @@
 					}"
 					@click="
 						!isInCart &&
-							cartStore.addSingleItemToCart(productBaseVariation)
+							cartStore.addItemToCart(productBaseVariation)
 					"
 					class="home-promotion-area-product-card__cart-button"
 				>

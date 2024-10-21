@@ -1,0 +1,27 @@
+.grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+}
+.grid-col-6 {
+	grid-column: span 6;
+}
+.grid-col-12 {
+	grid-column: span 12;
+}
+
+@media (max-width: $tablet-width) {
+	.grid-tw-col-6 {
+		grid-column: span 6;
+	}
+	.grid-tw-col-12 {
+		grid-column: span 12;
+	}
+}
+
+.gap-0-75 {
+	gap: 0.75rem;
+}
+
+.gap-0-25 {
+	gap: 0.25rem;
+}

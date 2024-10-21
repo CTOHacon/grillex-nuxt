@@ -27,7 +27,7 @@ const useProductsCatalogStore = defineStore('productsCatalogIndexStore', () => {
 		() => filteringStore.perPage,
 		() => filteringStore.sorting,
 	], () => {
-		console.log('Fetching products catalog due to filtering change');
+		console.info('Fetching products catalog due to filtering change');
 		fetch();
 	});
 

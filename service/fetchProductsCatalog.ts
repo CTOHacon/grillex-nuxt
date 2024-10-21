@@ -2,9 +2,11 @@ import useProductsCatalogFilteringStore from "~/store/useProductsCatalogFilterin
 import { useApi } from "./API";
 import useWebPageStore from "~/store/useWebPageStore";
 import type { TProductsCatalog } from "~/types/TProductsCatalog";
+import useFilteredProductCategoryStore from "~/store/useFilteredProductCategoryStore";
 
 export const fetchProductsCatalog = async () => {
     const { api } = useApi();
+    const filteredProductCategoryStore = useFilteredProductCategoryStore();
 
     // ! loose reactivity ! //
     const {
@@ -19,10 +21,11 @@ export const fetchProductsCatalog = async () => {
     const paged = usePaged();
 
     const productCategoryId = computed(() => {
-        if (webPageStore.data?.web_pageable_type.includes('ProductCategory')) return webPageStore.data?.web_pageable_id;
+        const webPageType = webPageStore.data?.web_pageable_type ?? '';
+        if (webPageType.includes('FilteredProductCategory')) return filteredProductCategoryStore.data?.product_category_id;
+        else if (webPageType.includes('ProductCategory')) return webPageStore.data?.web_pageable_id;
         return null;
     });
-
 
     return api<TProductsCatalog>(`/products/catalog`, {
         params: {
@@ -30,11 +33,10 @@ export const fetchProductsCatalog = async () => {
             sorting: sorting,
             priceStart: priceStart,
             priceEnd: priceEnd,
-            "appliedProductFilterOptions[]": [...appliedProductFilterOptions],
+            "appliedProductFilterOptions[]": Array.from(appliedProductFilterOptions),
             paged: paged.value,
             productCategoryId: productCategoryId.value,
         },
-        onResponse: (response) => { },
         onRequest: () => {
             console.info('📥 Fetching products catalog');
         },

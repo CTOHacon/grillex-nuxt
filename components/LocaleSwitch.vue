@@ -5,7 +5,7 @@
 			:value="code"
 			:selected="code === locale"
 		>
-			{{ code }}
+			{{ getLocaleEmoji(code) }}
 		</option>
 	</select>
 </template>
@@ -27,7 +27,7 @@ const changeLocale = async (event: Event) => {
 .locale-switch {
 	width: fit-content;
 	option {
-		font-size: 0.875rem;
+		font-size: 1rem;
 		text-transform: uppercase;
 	}
 }

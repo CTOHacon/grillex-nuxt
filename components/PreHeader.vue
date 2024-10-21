@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
-
 const isScrolled = ref(false);
 const onScroll = () => {
 	isScrolled.value = window.scrollY > 0;

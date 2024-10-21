@@ -1,6 +1,6 @@
 <template>
 	<button
-		class="catalog-modal-togle-button"
+		class="catalog-modal-Toggle-button"
 		aria-label="Каталог"
 		type="button"
 		:class="{
@@ -8,7 +8,7 @@
 		}"
 		@click="modalState.toggleModal('catalog')"
 	>
-		<SvgIcon class="catalog-modal-togle-button__icon" name="catalog" />
+		<SvgIcon class="catalog-modal-Toggle-button__icon" name="catalog" />
 		{{ $t('catalog') }}
 	</button>
 </template>
@@ -21,7 +21,7 @@ const modalState = useModalStateStore();
 
 <style scoped lang="scss">
 @import '~/styles/variables.scss';
-.catalog-modal-togle-button {
+.catalog-modal-Toggle-button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -55,7 +55,7 @@ const modalState = useModalStateStore();
 		min-width: unset;
 	}
 }
-.catalog-modal-togle-button__icon {
+.catalog-modal-Toggle-button__icon {
 	width: calc(var(--button-height) - 1.5rem);
 	height: calc(var(--button-height) - 1.5rem);
 	transition: transform 0.2s ease-in-out;

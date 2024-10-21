@@ -61,8 +61,9 @@ const useMediaFilesStore = defineStore('mediaFilesStore', () => {
         }
     }
 
-    const useMediaFile = (sourceReference: string | number | undefined) => {
-        const reference = ref(sourceReference);
+    type TMediaFileReference = string | number | undefined;
+    const useMediaFile = (sourceReference: TMediaFileReference | Ref<TMediaFileReference>) => {
+        const reference = isRef(sourceReference) ? sourceReference : ref(sourceReference);
 
         const mediaFile = computed(() => {
             if (!reference.value) return null;

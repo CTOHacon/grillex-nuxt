@@ -2,8 +2,6 @@ import { defineStore } from 'pinia'
 import useMediaFilesStore from './useMediaFilesStore';
 import { useApi } from '~/service/API';
 import type { TGlobalSettings } from '~/types/TGlobalSettings';
-import useLocaleStore from './useLocaleStore';
-import i18nConfig from '~/i18n.config';
 
 /**
  * Represents a store for managing web page resources.
@@ -12,8 +10,6 @@ const useGlobalSettingsStore = defineStore('globalSettingsStore', () => {
     const data = ref<any | null>(null);
     const mediaFilesStore = useMediaFilesStore();
     const { api } = useApi();
-    const { locale } = useI18n();
-
 
     const fetch = async () => {
         console.info('📥 Loading global settings');
@@ -28,9 +24,18 @@ const useGlobalSettingsStore = defineStore('globalSettingsStore', () => {
         }
     }
 
+    // get the data item by key which is a string of key.key.key... etc
+    const getData = <T = any>(key: string) => {
+        return computed<T | null>(() => {
+            let result = data.value;
+            return safeObjectDataGetter(result, key);
+        });
+    };
+
     return {
         data,
-        fetch
+        fetch,
+        getData
     };
 })
 

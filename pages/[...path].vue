@@ -1,7 +1,6 @@
 <template>
 	<AppLayout>
 		<WebPageComponent />
-		<HeaderSpacer />
 	</AppLayout>
 </template>
 
@@ -10,12 +9,13 @@ import useWebPageStore from '~/store/useWebPageStore';
 import useMediaFilesStore from '~/store/useMediaFilesStore';
 import AppLayout from '~/layouts/AppLayout.vue';
 import WebPageComponent from '~/components/WebPageComponent.vue';
+import setup404Response from '~/utils/setup404Response';
 
 const webPageStore = useWebPageStore();
 
 if (import.meta.server) {
 	await webPageStore.fetch();
-	if (!webPageStore.data) setup404Responce('No web page found');
+	if (!webPageStore.data) setup404Response('No web page found');
 }
 
 const { data: webPage } = storeToRefs(webPageStore);
@@ -28,9 +28,7 @@ const mediaFilesStore = useMediaFilesStore();
 const { getSizeUrl: getOgImageSizeUrl } = mediaFilesStore.useMediaFile(
 	webPage.value?.seo?.og_image || ''
 );
-
 await mediaFilesStore.loadMediaFiles();
-
 const ogImageUrl = getOgImageSizeUrl('thumbnail');
 
 useHead({

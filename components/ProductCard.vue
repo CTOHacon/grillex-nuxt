@@ -9,7 +9,7 @@
 			:product="product"
 		/>
 		<a
-			:to="productPath"
+			:href="productPath"
 			:aria-label="product.name"
 			:title="product.name"
 			class="product-card__image-wrapper"

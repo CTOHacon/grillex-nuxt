@@ -17,7 +17,7 @@
 				class="cart-modal-footer__button"
 				size="medium"
 				theme="accent"
-				:href="'/checkout'"
+				:href="localizePath('cart')"
 			>
 				{{ $t('checkout') }}
 			</BaseButton>
@@ -31,6 +31,7 @@ import useModalStateStore from '~/store/useModalStateStore';
 
 const modalStateStore = useModalStateStore();
 const cartStore = useCartStore();
+const localizePath = useLocalePath();
 </script>
 
 <style scoped lang="scss">

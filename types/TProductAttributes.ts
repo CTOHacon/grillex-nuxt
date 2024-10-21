@@ -1,16 +1,14 @@
-export type TProductAttributeValue = {
-	id: number;
-	value: string;
-};
-
 export type TProductAttribute = {
 	id: number;
 	name: string;
-	values: TProductAttributeValue[];
-};
+	sorting_order: number;
+	product_attribute_options_count?: number;
+}
 
-export type TProductAttributeGroup = {
-	id: number;
-	name: string;
-	attributes: TProductAttribute[];
-};
+export type TLoadsProductAttribute<With> = {
+	product_attribute: TProductAttribute & With;
+}
+
+export type TLoadsProductAttributes<With> = {
+	product_attributes: (TProductAttribute & With)[];
+}

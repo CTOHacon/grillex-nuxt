@@ -8,11 +8,12 @@ export default defineNuxtConfig({
 
     sourcemap: true,
 
-    // routeRules: {
-    //     '*': {
-    //         swr: 360,
-    //     },
-    // },
+    routeRules: {
+        '*': {
+            prerender: false,
+            // swr: 30, // 30 seconds
+        },
+    },
 
     nitro: {
         preset: 'node-server',

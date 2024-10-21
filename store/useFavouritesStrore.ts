@@ -4,17 +4,28 @@ import type { TLoadsProductVariations, TProductVariation } from '~/types/TProduc
 import useMediaFilesStore from './useMediaFilesStore';
 import productService from '~/service/productService';
 import type { TProduct } from '~/types/TProduct';
+import { useLocalStorage } from '@vueuse/core';
 
-const useFavouritesStore = defineStore('favouritesStore', () => {
+const useFavouritesStore = () => {
     // Dependencies
     const mediaFilesStore = useMediaFilesStore();
 
-    // Reactive state
-    const cookieFavouritesItems = useCookie<TFavouritesItem[]>('favouriteItems', {
-        sameSite: 'lax',
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+    const favouriteItems = useLocalStorage<TFavouritesItem[]>('favourites', [], {
+        initOnMounted: true,
     });
-    const favouriteItems = ref<TFavouritesItem[]>(cookieFavouritesItems.value || []);
+    // Reactive state
+    // const sourceFavouritesItems = useCookie<TFavouritesItem[]>('favouriteItems', {
+    //     sameSite: 'lax',
+    //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+    // });
+    //     // Sync favourite items with sources
+    //     const syncFavouritesWithCookies = () => {
+    //         sourceFavouritesItems.value = favouriteItems.value.map(item => ({
+    //             ...item,
+    //             product: undefined,
+    //         }));
+    //     };
+    // watch(favouriteItems, syncFavouritesWithCookies, { immediate: true, deep: true });
 
     // Helper to find favourite item by product
     const findFavouritesItemById = (id: number) => favouriteItems.value.find(item => item.product_id === id);
@@ -37,20 +48,34 @@ const useFavouritesStore = defineStore('favouritesStore', () => {
             favouriteItems.value = [];
         }
     };
+    const syncFavouritesWithServer = async () => {
+        try {
+            const variationIds = favouriteItems.value.map(item => item.product_id);
+            const productVariations = await productService.fetchSelection(variationIds);
 
-    // Sync favourite items with cookies
-    const syncFavouritesWithCookies = () => {
-        cookieFavouritesItems.value = favouriteItems.value.map(item => ({
-            ...item,
-            product: undefined,
-        }));
+            let newFavouriteItems: TFavouritesItem[] = [];
+            productVariations.forEach(variation => {
+                const cartItem = findFavouritesItemById(variation.id);
+                if (cartItem) {
+                    cartItem.product = variation;
+                    newFavouriteItems.push(cartItem);
+                }
+            });
+
+            favouriteItems.value = newFavouriteItems;
+
+            mediaFilesStore.addMediaFilesToLoad(productVariations);
+            await mediaFilesStore.loadMediaFiles();
+        } catch (error) {
+            console.error('Error loading product variations:', error);
+            favouriteItems.value = [];
+        }
     };
 
     // Fetch products on component mount
-    onMounted(fetchProductsForFavourites);
+    // onMounted(fetchProductsForFavourites);
 
-    // Watch favouriteItems and sync with cookies
-    watch(favouriteItems, syncFavouritesWithCookies, { immediate: true, deep: true });
+    // Watch favouriteItems and sync with sources
 
     const addItemToFavourites = (product: TProduct & TLoadsProductVariations) => {
         favouriteItems.value.push({ product_id: product.id, product });
@@ -80,9 +105,10 @@ const useFavouritesStore = defineStore('favouritesStore', () => {
         removeItemFromFavourites,
         clearFavourites,
         toggleItemInFavourites,
+        syncFavouritesWithServer,
         isInFavourites,
         favouritesQuantity
     };
-});
+};
 
 export default useFavouritesStore;

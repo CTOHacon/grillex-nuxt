@@ -1,6 +1,9 @@
 <template>
 	<label
 		class="catalog-product-filters-checkbox"
+		:class="{
+			'_is-always-enabled': isAlwaysEnabled
+		}"
 		:for="'filter-option-' + value"
 	>
 		<input
@@ -9,7 +12,8 @@
 			:name="'filter-option-' + value"
 			:value="value"
 			type="checkbox"
-			:checked="store.appliedProductFilterOptions.includes(value)"
+			:disabled="isAlwaysEnabled"
+			:checked="store.isProductFilterOptionApplied(value)"
 			@change="store.toggleProductFilterOption(value)"
 		/>
 		<span class="catalog-product-filters-checkbox__checkmark"></span>
@@ -18,14 +22,20 @@
 </template>
 
 <script setup lang="ts">
+import useFilteredProductCategoryStore from '~/store/useFilteredProductCategoryStore';
 import useProductsCatalogFilteringStore from '~/store/useProductsCatalogFilteringStore';
 
-const store = useProductsCatalogFilteringStore();
-
-defineProps<{
+const props = defineProps<{
 	label: string;
 	value: number;
 }>();
+
+const store = useProductsCatalogFilteringStore();
+const filteredProductCategoryStore = useFilteredProductCategoryStore();
+const isAlwaysEnabled =
+	filteredProductCategoryStore.isProductFilterOptionAlwaysEnabled(
+		props.value
+	);
 </script>
 
 <style scoped lang="scss">
@@ -35,6 +45,10 @@ defineProps<{
 	cursor: pointer;
 	padding: 0.375rem 0;
 	user-select: none;
+	&._is-always-enabled {
+		pointer-events: none;
+		opacity: 0.5;
+	}
 }
 .catalog-product-filters-checkbox__input {
 	display: none;

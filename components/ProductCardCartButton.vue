@@ -4,13 +4,13 @@
 			class="product-card-cart-button"
 			v-if="productVariation.stock"
 			:class="{ _active: inCart }"
-			@click="!inCart && cartStore.addSingleItemToCart(productVariation)"
+			@click="!inCart && cartStore.addItemToCart(productVariation)"
 		>
 			<template v-if="!inCart">{{ $t('to_cart') }}</template>
 			<template v-else>{{ $t('in_cart') }}</template>
 		</button>
 		<p class="product-card-not-in-stock" v-else>
-			{{ $t('not_in_stock') }}
+			{{ $t('out_of_stock') }}
 		</p>
 	</div>
 </template>

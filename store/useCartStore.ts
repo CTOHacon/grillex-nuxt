@@ -3,33 +3,50 @@ import type { TCartItem } from '~/types/TCartItem';
 import type { TProductVariation } from '~/types/TProductVariation';
 import useMediaFilesStore from './useMediaFilesStore';
 import productVariationService from '~/service/productVariationService';
+import { useLocalStorage } from '@vueuse/core';
 
-const useCartStore = defineStore('cartStore', () => {
+const useCartStore = () => {
     // Dependencies
     const mediaFilesStore = useMediaFilesStore();
 
     // Reactive state
-    const cookieCartItems = useCookie<TCartItem[]>('cartItems', {
-        sameSite: 'lax',
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+    // const storedCartItems = useCookie<TCartItem[]>('cartItems', {
+    //     sameSite: 'lax',
+    //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+    // });
+    // const syncCartWithCookies = () => {
+    //     storedCartItems.value = cartItems.value.map(item => ({
+    //         ...item,
+    //         product_variation: undefined,
+    //     }));
+    // };
+    // watch(cartItems, syncCartWithCookies, { immediate: true, deep: true });
+
+    // const cartItems = ref<TCartItem[]>(storedCartItems.value || []);
+    // const cartItems = ref<TCartItem[]>([]);
+    const cartItems = useLocalStorage<TCartItem[]>('cartItems', [], {
+        initOnMounted: true,
     });
-    const cartItems = ref<TCartItem[]>(cookieCartItems.value || []);
 
     // Helper to find cart item by product variation
     const findCartItemById = (id: number) => cartItems.value.find(item => item.product_variation_id === id);
 
     // Fetch product variations for cart items
-    const fetchProductVariationsForCart = async () => {
+    const syncCartWithServer = async () => {
         try {
             const variationIds = cartItems.value.map(item => item.product_variation_id);
             const productVariations = await productVariationService.fetchSelection(variationIds);
 
+            let newCartItems: TCartItem[] = [];
             productVariations.forEach(variation => {
                 const cartItem = findCartItemById(variation.id);
                 if (cartItem) {
                     cartItem.product_variation = variation;
+                    newCartItems.push(cartItem);
                 }
             });
+
+            cartItems.value = newCartItems;
 
             mediaFilesStore.addMediaFilesToLoad(productVariations);
             await mediaFilesStore.loadMediaFiles();
@@ -39,36 +56,24 @@ const useCartStore = defineStore('cartStore', () => {
         }
     };
 
-    // Sync cart items with cookies
-    const syncCartWithCookies = () => {
-        cookieCartItems.value = cartItems.value.map(item => ({
-            ...item,
-            product_variation: undefined,
-        }));
-    };
-
-    // Fetch product variations on component mount
-    onMounted(fetchProductVariationsForCart);
-
-    // Watch cartItems and sync with cookies
-    watch(cartItems, syncCartWithCookies, { immediate: true, deep: true });
-
     // Cart actions
-    const addSingleItemToCart = (variation: TProductVariation) => {
+    const addItemToCart = (variation: TProductVariation, quantity: number = 1) => {
         const existingItem = findCartItemById(variation.id);
 
         if (existingItem) {
-            existingItem.quantity++;
+            existingItem.quantity += quantity;
         } else {
             const newItem: TCartItem = {
                 product_variation_id: variation.id,
                 product_variation: variation,
-                quantity: 1,
+                quantity: quantity,
                 inGiftQuantity: 0,
             };
             cartItems.value.push(newItem);
             mediaFilesStore.addMediaFilesToLoad([variation]);
             mediaFilesStore.loadMediaFiles();
+
+            syncCartWithServer();
         }
     };
 
@@ -91,7 +96,7 @@ const useCartStore = defineStore('cartStore', () => {
         const isAdding = diff > 0;
 
         for (let i = 0; i < Math.abs(diff); i++) {
-            isAdding ? addSingleItemToCart(cartItem.product_variation) : removeSingleItemFromCart(cartItem.product_variation);
+            isAdding ? addItemToCart(cartItem.product_variation) : removeSingleItemFromCart(cartItem.product_variation);
         }
     };
 
@@ -100,7 +105,7 @@ const useCartStore = defineStore('cartStore', () => {
     };
 
     const toggleItemInCart = (variation: TProductVariation) => {
-        isInCart(variation.id) ? removeSingleItemFromCart(variation) : addSingleItemToCart(variation);
+        isInCart(variation.id) ? removeSingleItemFromCart(variation) : addItemToCart(variation);
     };
 
     // Cart utilities
@@ -129,9 +134,10 @@ const useCartStore = defineStore('cartStore', () => {
 
     return {
         cartItems,
-        addSingleItemToCart,
+        addItemToCart,
         removeSingleItemFromCart,
         updateCartItemQuantity,
+        syncCartWithServer,
         clearCart,
         toggleItemInCart,
         cartItemTotalPrice,
@@ -141,6 +147,6 @@ const useCartStore = defineStore('cartStore', () => {
         totalGiftItems,
         totalCartPrice,
     };
-});
+};
 
 export default useCartStore;

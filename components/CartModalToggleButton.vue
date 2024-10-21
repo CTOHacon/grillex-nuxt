@@ -4,7 +4,7 @@
 		class="cart-modal-toggle-button"
 		:class="{
 			_active: modalStore.isActiveModal('cart'),
-			_hasProducts: cartStore.totalCartQuantity > 0
+			_hasProducts: cartStore.totalCartQuantity.value > 0
 		}"
 		:disabled="
 			!cartStore.totalCartQuantity && !modalStore.isActiveModal('cart')

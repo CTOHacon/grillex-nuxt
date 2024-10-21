@@ -3,14 +3,15 @@
 		:is="link ? 'a' : 'span'"
 		class="home-recomendations-small-card"
 		:href="link"
+		v-if="title || text || image"
 	>
 		<article class="home-recomendations-small-card__inner color-white">
 			<img
 				v-if="image"
 				class="home-recomendations-small-card__image"
-				:src="image?.url"
-				:width="image?.sizes?.full.width"
-				:height="image?.sizes?.full.height"
+				:src="image.url"
+				:width="image.sizes?.full.width"
+				:height="image.sizes?.full.height"
 				:alt="htmlTagsDestroyer(title)"
 			/>
 			<div class="home-recomendations-small-card__main">
@@ -33,14 +34,13 @@ import LinkForwardButton from './LinkForwardButton.vue';
 import useMediaFilesStore from '~/store/useMediaFilesStore';
 import htmlTagsDestroyer from '~/utils/htmlTagsDestroyer';
 
-const webPageData = useWebPageStore().data?.data?.data || ({} as any);
-const imageReference =
-	webPageData?.promotion_area?.special_offer_article.image || '';
+const { getData } = useWebPageStore();
+const imageReference = getData('promotion_area.special_offer_article.image');
 const { mediaFile: image } = useMediaFilesStore().useMediaFile(imageReference);
 
-const title = webPageData?.promotion_area?.special_offer_article.title || '';
-const text = webPageData?.promotion_area?.special_offer_article.text || '';
-const link = webPageData?.promotion_area?.special_offer_article.link || '';
+const title = getData('promotion_area.special_offer_article.title');
+const text = getData('promotion_area.special_offer_article.text');
+const link = getData('promotion_area.special_offer_article.link');
 </script>
 
 <style scoped lang="scss">

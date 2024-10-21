@@ -8,11 +8,20 @@
 		/> -->
 		<!-- <LikedProductsButton /> -->
 		<!-- <ProductsComparisonButton /> -->
-		<CartModalTogleButton />
+		<CartModalToggleButton />
 	</div>
 </template>
 
 <script setup lang="ts"></script>
+
+<style lang="scss">
+@import '~/styles/variables.scss';
+@media (max-width: $tablet-width) {
+	:root {
+		--bottom-navigation-bar-height: 4rem;
+	}
+}
+</style>
 
 <style scoped lang="scss">
 @import '~/styles/variables.scss';
@@ -20,9 +29,10 @@
 	position: fixed;
 	bottom: 0;
 	left: 0;
+	top: unset;
 	width: 100%;
 	background: #000;
-	padding: 0.5rem;
+	height: var(--bottom-navigation-bar-height);
 	z-index: 9;
 	color: #fff;
 	display: none;

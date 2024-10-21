@@ -6,8 +6,6 @@ export const fetchWebPage = async () => {
     const path = useWebPagePath();
     const paged = usePaged();
 
-    console.log('📥 Fetching web page ', path.value);
-
     return api<TWebPage>(`/web-pages/${path.value}`, {
         query: {
             paged: paged.value,

@@ -1,7 +1,7 @@
 <template>
 	<ProductCardBaseToggleIconedButton
 		class="product-card-to-favourites-button"
-		:class="{ _active: favouritesStore.isInFavourites(product.id) }"
+		:class="{ _active: inFavourite }"
 		@click="favouritesStore.toggleItemInFavourites(product)"
 		icon="product-card-like"
 	/>
@@ -11,11 +11,14 @@
 import useFavouritesStore from '~/store/useFavouritesStrore';
 import type { TProduct } from '~/types/TProduct';
 import type { TLoadsProductVariations } from '~/types/TProductVariation';
-defineProps<{
+const props = defineProps<{
 	product: TProduct & TLoadsProductVariations;
 }>();
 
 const favouritesStore = useFavouritesStore();
+const inFavourite = computed(() =>
+	favouritesStore.isInFavourites(props.product.id)
+);
 </script>
 
 <style scoped lang="scss">

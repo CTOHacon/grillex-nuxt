@@ -3,14 +3,17 @@
 		:is="link ? 'a' : 'div'"
 		class="home-promotion-area-featured-article"
 		:href="link"
+		v-if="title || text || image"
 	>
 		<article class="home-promotion-area-featured-article__inner">
 			<h4
 				class="home-promotion-area-featured-article__title"
+				v-if="title"
 				v-html="title"
 			></h4>
 			<p
 				class="home-promotion-area-featured-article__text"
+				v-if="text"
 				v-html="text"
 			></p>
 			<LinkForwardButton
@@ -37,15 +40,13 @@ import useMediaFilesStore from '~/store/useMediaFilesStore';
 import useWebPageStore from '~/store/useWebPageStore';
 import htmlTagsDestroyer from '~/utils/htmlTagsDestroyer';
 
-const webPageData = useWebPageStore().data?.data?.data || ({} as any);
+const { getData } = useWebPageStore();
 
-const imageReference =
-	webPageData?.promotion_area?.featured_article?.image || '';
+const imageReference = getData('promotion_area.featured_article.image');
 const { mediaFile: image } = useMediaFilesStore().useMediaFile(imageReference);
-
-const title = webPageData?.promotion_area?.featured_article?.title || '';
-const text = webPageData?.promotion_area?.featured_article?.text || '';
-const link = webPageData?.promotion_area?.featured_article?.link || '';
+const title = getData('promotion_area.featured_article.title') || '';
+const text = getData('promotion_area.featured_article.text') || '';
+const link = getData('promotion_area.featured_article.link') || '';
 </script>
 
 <style scoped lang="scss">

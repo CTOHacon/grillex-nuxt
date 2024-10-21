@@ -2,15 +2,16 @@
 	<div class="product-category-content">
 		<div class="product-category-content__aside">
 			<BaseFeaturedArticleSmallCard
-				v-if="webPage?.data.data.featured_article"
-				:title="webPage?.data.data.featured_article.title"
-				:link="webPage?.data.data.featured_article.link"
-				:text="webPage?.data.data.featured_article.text"
+				v-if="featuredArticleTitle || featuredArticleText"
+				:title="featuredArticleTitle"
+				:link="featuredArticleLink"
+				:text="featuredArticleText"
 				:image="featuredArticleImage?.url || ''"
 			/>
 			<BaseTableOfContents
+				v-if="tableOfContents && Array.isArray(tableOfContents)"
 				:title="webPage?.title"
-				:items="webPage?.data.data.table_of_contents"
+				:items="tableOfContents"
 				@item-click="() => (collapsedContentShouldBeVisible = true)"
 			/>
 		</div>
@@ -18,19 +19,16 @@
 			<BaseCollapsibleContent
 				class="product-category-content__main-text"
 				:closed-height="250"
-				v-if="webPage?.data.data.content"
+				v-if="content"
 			>
-				<div
-					class="typography-content"
-					v-html="webPage?.data.data.content"
-				/>
+				<div class="typography-content" v-html="content" />
 			</BaseCollapsibleContent>
 			<BaseFeaturedArticleLargeCard
-				v-if="webPage?.data.data.banner"
-				:title="webPage?.data.data.banner.title"
-				:text="webPage?.data.data.banner.text"
+				v-if="bannerTitle || bannerText"
+				:title="bannerTitle"
+				:text="bannerText"
 				:image="bannerImage?.url || ''"
-				:link="webPage?.data.data.banner.link"
+				:link="bannerLink"
 				theme="dark"
 			/>
 		</div>
@@ -46,22 +44,32 @@ import BaseFeaturedArticleSmallCard from './BaseFeaturedArticleSmallCard.vue';
 import useMediaFilesStore from '~/store/useMediaFilesStore';
 import BaseFeaturedArticleLargeCard from './BaseFeaturedArticleLargeCard.vue';
 
-// This is a workaround to make the content visible when the user clicks on the table of contents
 const collapsedContentShouldBeVisible = ref(false);
 provide('collapsedContentShouldBeVisible', collapsedContentShouldBeVisible);
 
 const webPageStore = useWebPageStore();
+const getData = webPageStore.getData;
 const { data: webPage } = storeToRefs(webPageStore);
 
 const { useMediaFile } = useMediaFilesStore();
 
+const featuredArticleTitle = getData('featured_article.title');
+const featuredArticleLink = getData('featured_article.link');
+const featuredArticleText = getData('featured_article.text');
+const featuredArticleImageReference = getData('featured_article.image');
 const { mediaFile: featuredArticleImage } = useMediaFile(
-	webPage.value?.data.data?.featured_article?.image
+	featuredArticleImageReference
 );
 
-const { mediaFile: bannerImage } = useMediaFile(
-	webPage.value?.data.data?.banner?.image
-);
+const tableOfContents = getData('table_of_contents');
+
+const content = getData('content');
+
+const bannerTitle = getData('banner.title');
+const bannerText = getData('banner.text');
+const bannerLink = getData('banner.link');
+const bannerImageReference = getData('banner.image');
+const { mediaFile: bannerImage } = useMediaFile(bannerImageReference);
 </script>
 
 <style scoped lang="scss">

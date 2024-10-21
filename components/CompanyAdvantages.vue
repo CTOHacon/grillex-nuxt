@@ -1,14 +1,18 @@
 <template>
-	<section class="company-advantages" v-if="data.company_advantages?.items">
+	<section
+		class="company-advantages"
+		v-if="companyAdvantages && Array.isArray(companyAdvantages)"
+	>
 		<SectionTitle
-			:tagname="'h2'"
+			tagname="h2"
+			size="3"
 			class="company-advantages__title color-roman-silver"
 		>
 			{{ $t('advantages_title') }}
 		</SectionTitle>
 		<ul class="company-advantages__list">
 			<CompanyAdvantagesCard
-				v-for="advantage in data.company_advantages.items"
+				v-for="advantage in companyAdvantages"
 				:icon="advantage.icon"
 				:title="advantage.title"
 				:description="advantage.description"
@@ -23,9 +27,9 @@ import useGlobalSettingsStore from '~/store/useGlobalSettingsStore';
 import CompanyAdvantagesCard from './CompanyAdvantagesCard.vue';
 import SectionTitle from './SectionTitle.vue';
 
-const globalSettingsStore = useGlobalSettingsStore();
+const { getData } = useGlobalSettingsStore();
 
-const { data } = storeToRefs(globalSettingsStore);
+const companyAdvantages = getData('company_advantages.items');
 </script>
 
 <style scoped lang="scss">

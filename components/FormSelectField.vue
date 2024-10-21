@@ -43,11 +43,12 @@
 				{{ errorMessage }}
 			</span>
 		</Transition>
+		<SvgIcon name="form-valid-tip" class="form-select-field__valid-tip" />
 	</label>
 </template>
 
 <script setup lang="ts">
-import type { ISelectFieldOption } from '~/types/TSelectFieldOption';
+import type { TSelectFieldOption } from '~/types/TSelectFieldOption';
 
 const props = defineProps<{
 	label: string;
@@ -55,7 +56,7 @@ const props = defineProps<{
 	required?: boolean;
 	isValid?: boolean;
 	errorMessage?: string;
-	options: ISelectFieldOption[];
+	options: TSelectFieldOption[];
 	theme?: 'light' | 'dark';
 }>();
 const modelValue = defineModel<string>();
@@ -87,6 +88,7 @@ watchEffect(() => {
 	position: relative;
 	transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 	background: #f9f9f9;
+	display: block;
 	border: 0.0625rem solid #80868e;
 	&.required::after {
 		content: '*';
@@ -149,5 +151,20 @@ watchEffect(() => {
 	fill: #000;
 	transition: fill 0.2s ease-in-out;
 	pointer-events: none;
+}
+
+.form-select-field__valid-tip {
+	position: absolute;
+	top: 0.5625rem;
+	right: 0.5rem;
+	width: 1.125rem;
+	height: 1.125rem;
+	transform: translateY(-50%);
+	opacity: 0;
+	transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.form-select-field.is-valid .form-select-field__valid-tip {
+	opacity: 1;
+	transform: translateY(0%);
 }
 </style>

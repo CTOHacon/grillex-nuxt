@@ -4,6 +4,7 @@
 		class="base-button"
 		:class="[`${theme}-theme`, size]"
 		:href="href"
+		:disabled="props.disabled"
 	>
 		<slot />
 	</component>
@@ -14,6 +15,7 @@ const props = defineProps<{
 	theme?: 'dark-form' | 'accent' | 'accent-bordered' | 'dark' | 'secondary';
 	size?: 'small' | 'medium' | 'large';
 	href?: string;
+	disabled?: boolean;
 }>();
 
 // Determine if the component should render as a <button> or <a> tag

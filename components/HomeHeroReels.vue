@@ -12,6 +12,7 @@
 			pauseOnMouseEnter: true
 		}"
 		class="home-hero-reels"
+		v-if="items && Array.isArray(items)"
 	>
 		<SwiperSlide
 			v-for="({ image, title, link }, index) in items"
@@ -34,9 +35,8 @@ import 'swiper/css/effect-fade';
 import HomeHeroReelsSlide from './HomeHeroReelsSlide.vue';
 import useWebPageStore from '~/store/useWebPageStore';
 
-const webPage = useWebPageStore();
-const data = webPage?.data?.data.data || ({} as any);
-const items = data?.hero_reels || [];
+const { getData } = useWebPageStore();
+const items = getData('hero_reels');
 </script>
 
 <style scoped lang="scss">

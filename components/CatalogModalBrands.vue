@@ -2,8 +2,8 @@
 	<ul class="catalog-modal-brands">
 		<li
 			class="catalog-modal-brands__item"
-			v-if="data?.brands_menu"
-			v-for="(brand, index) in data.brands_menu.items"
+			v-if="brandsMenu"
+			v-for="(brand, index) in brandsMenu.items"
 		>
 			<CatalogModalBrandsItem
 				:key="index"
@@ -18,9 +18,8 @@
 <script lang="ts" setup>
 import useGlobalSettingsStore from '~/store/useGlobalSettingsStore';
 
-const globalSettingsStore = useGlobalSettingsStore();
-
-const { data } = storeToRefs(globalSettingsStore);
+const { getData } = useGlobalSettingsStore();
+const brandsMenu = getData('brands_menu');
 </script>
 
 <style scoped lang="scss">

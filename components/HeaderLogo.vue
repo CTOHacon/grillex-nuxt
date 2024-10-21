@@ -45,6 +45,11 @@ const localizePath = useSwitchLocalePath();
 	height: 100%;
 	position: relative;
 	transition: width 0.2s ease-in-out, margin-right 0.2s ease-in-out;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
 	&._scrolled {
 		width: 2.1875rem;
 	}

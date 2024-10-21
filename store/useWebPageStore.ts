@@ -1,4 +1,5 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
+import { ref, computed, readonly } from 'vue';
 import { fetchWebPage } from '~/service/fetchWebPage';
 import type { TWebPage } from '~/types/TWebPage';
 import useMediaFilesStore from './useMediaFilesStore';
@@ -12,20 +13,29 @@ const useWebPageStore = defineStore('webPageStore', () => {
 
     const fetch = async () => {
         try {
-            const respone = await fetchWebPage();
-            data.value = respone;
+            const response = await fetchWebPage();
+            data.value = response;
 
-            mediaFilesStore.addMediaFilesToLoad([respone.data, respone?.seo?.og_image]);
+            mediaFilesStore.addMediaFilesToLoad([response.data, response?.seo?.og_image]);
             await mediaFilesStore.loadMediaFiles();
         } catch (error) {
             console.error('Error fetching WebPage:', error);
         }
-    }
+    };
+
+    // get the data item by key which is a string of key.key.key... etc
+    const getData = <T = any>(key: string) => {
+        return computed<T | null>(() => {
+            let result = data.value?.data?.data;
+            return safeObjectDataGetter(result, key);
+        });
+    };
 
     return {
         data,
-        fetch
+        fetch,
+        getData,
     };
-})
+});
 
 export default useWebPageStore;

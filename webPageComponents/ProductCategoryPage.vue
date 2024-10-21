@@ -2,7 +2,7 @@
 	<HeaderSpacer />
 	<Breadcrumbs class="container" />
 	<template v-if="data && isValidPaginationPage(data.products)">
-		<ProductsCatalogPageLayout class="product-category-page mb-5-5">
+		<ProductsCatalogPageLayout class="mb-5-5">
 			<ProductsCatalog />
 			<div class="pl-1-5 pr-1-5 mb-4">
 				<SeparatorLine />
@@ -46,20 +46,34 @@ import NewProductsCarousel from '~/components/NewProductsCarousel.vue';
 import ProductCategoryContent from '~/components/ProductCategoryContent.vue';
 import ProductsCatalog from '~/components/ProductsCatalog.vue';
 import ProductsCatalogPageLayout from '~/layouts/ProductsCatalogPageLayout.vue';
+import useFilteredProductCategoryStore from '~/store/useFilteredProductCategoryStore';
 import useProductsCatalogStore from '~/store/useProductsCatalogStore';
 import useWebPageStore from '~/store/useWebPageStore';
 import isValidPaginationPage from '~/utils/isValidPaginationPage';
+import setup404Response from '~/utils/setup404Response';
+const { t } = useI18n();
 
 const productsCatalogStore = useProductsCatalogStore();
 const { data } = storeToRefs(productsCatalogStore);
 const webPageStore = useWebPageStore();
 
+const webPageType = webPageStore.data?.web_pageable_type ?? '';
+const webPageableId = webPageStore.data?.web_pageable_id ?? '';
+
+const filteredProductCategoryStore = useFilteredProductCategoryStore();
 if (import.meta.server) {
+	if (webPageType.includes('FilteredProductCategory') && webPageableId) {
+		await filteredProductCategoryStore.fetch(webPageableId);
+	}
 	await productsCatalogStore.fetch();
 }
 
-if (!data.value?.products || !isValidPaginationPage(data.value?.products))
-	setup404Responce('No products found');
+if (!data.value?.products || !isValidPaginationPage(data.value?.products)) {
+	setup404Response('No products found');
+	useHead({
+		title: t('404_message')
+	});
+}
 </script>
 
 <style scoped lang="scss">
@@ -77,9 +91,6 @@ if (!data.value?.products || !isValidPaginationPage(data.value?.products))
 }
 .product-category-page__sliders {
 	padding: 0 3rem 3rem 3rem;
-	@media (max-width: $tablet-width) {
-		padding: 0 1.5rem 3rem 1.5rem;
-	}
 	@media (max-width: $mobile-width) {
 		padding: 0 1rem 1rem 1rem;
 	}

@@ -9,12 +9,10 @@
 			height="469"
 			loading="lazy"
 		/>
-		<SectionTitle
-			tagname="h2"
+		<h2
 			class="base-featured-article-large-card__title base-featured-article-large-card__width-wrapper"
-		>
-			{{ title }}
-		</SectionTitle>
+			v-html="title"
+		/>
 		<p
 			class="base-featured-article-large-card__text base-featured-article-large-card__width-wrapper"
 			v-html="text"
@@ -70,18 +68,17 @@ defineProps<{
 	position: relative;
 }
 .base-featured-article-large-card__title {
-	margin-bottom: 2rem;
-	font-size: 5.5rem;
-	@media (max-width: $tablet-width) {
-		font-size: 3.5rem;
-	}
+	margin-bottom: var(--size-2);
+	font-size: var(--size-5-5);
+	font-family: 'AA Duke';
+	font-weight: 400;
+	font-size: var(--size-5-5);
+	line-height: 88%;
+	text-transform: uppercase;
 }
 .base-featured-article-large-card__text {
-	font-size: 1.125rem;
+	font-size: var(--size-1-125);
 	line-height: 1.33;
-	@media (max-width: $mobile-width) {
-		font-size: 1rem;
-	}
 }
 
 .base-featured-article-large-card__image {
@@ -91,9 +88,6 @@ defineProps<{
 	max-width: min(29.3125rem, calc(100% - 37.5rem));
 	height: auto;
 	z-index: 0;
-	// @media (max-width: $tablet-width) {
-	// 	display: none;
-	// }
 }
 .base-featured-article-large-card__link {
 	position: absolute;

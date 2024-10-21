@@ -1,10 +1,11 @@
 <template>
-	<nav v-if="breadcrumbs" class="breadcrumbs">
+	<nav class="breadcrumbs">
 		<ul class="breadcrumbs__list">
 			<li class="breadcrumbs__list-item">
-				<a href="/">Home</a>
+				<a href="/">{{ $t('home') }}</a>
 			</li>
 			<li
+				v-if="breadcrumbs"
 				v-for="(breadcrumb, index) in breadcrumbs"
 				:key="index"
 				class="breadcrumbs__list-item"
@@ -24,12 +25,19 @@
 import useWebPageStore from '~/store/useWebPageStore';
 
 const webPageStore = useWebPageStore();
-const breadcrumbs = webPageStore.data?.breadcrumbs;
+import { defineProps } from 'vue';
+
+const props = defineProps<{
+	breadcrumbs?: { title: string; path: string }[];
+}>();
+
+const breadcrumbs = props.breadcrumbs || webPageStore.data?.breadcrumbs;
 </script>
 
 <style scoped lang="scss">
 @import '~/styles/variables.scss';
 .breadcrumbs {
+	max-width: 100%;
 	&__list {
 		display: flex;
 		align-items: center;
@@ -40,6 +48,7 @@ const breadcrumbs = webPageStore.data?.breadcrumbs;
 		overflow: auto;
 		padding-top: 1.5rem;
 		padding-bottom: 1.5rem;
+		max-width: 100%;
 		@media (max-width: $mobile-width) {
 			padding-top: 1rem;
 			padding-bottom: 1rem;

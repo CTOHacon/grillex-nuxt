@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { TSelectOptions } from '~/types/TSelectOptions';
+import useFilteredProductCategoryStore from './useFilteredProductCategoryStore';
 
 const useProductsCatalogFilteringStore = defineStore('productsCatalogIndexFilteringStore', () => {
     const {
@@ -47,23 +48,39 @@ const useProductsCatalogFilteringStore = defineStore('productsCatalogIndexFilter
         maxPrice.value = max;
     }
 
-    const appliedProductFilterOptions = ref<number[]>([]);
+    const appliedProductFilterOptions = ref<Set<number>>(new Set());
+
+    const filteredProductCategoryStore = useFilteredProductCategoryStore();
+
+    watchEffect(() => {
+        if (!filteredProductCategoryStore.data) return;
+        filteredProductCategoryStore.data.product_filter_options.forEach((option) => {
+            appliedProductFilterOptions.value.add(option.id);
+        });
+    });
+
     const isProductFilterOptionApplied = (filterOptionId: number) => {
-        return appliedProductFilterOptions.value.includes(filterOptionId);
+        return appliedProductFilterOptions.value.has(filterOptionId);
     }
+
+    const enableProductFilterOption = (filterOptionId: number) => {
+        appliedProductFilterOptions.value.add(filterOptionId);
+    }
+
     const toggleProductFilterOption = (filterOptionId: number) => {
-        const index = appliedProductFilterOptions.value.indexOf(filterOptionId);
-        if (index === -1) {
-            appliedProductFilterOptions.value.push(filterOptionId);
+        if (filteredProductCategoryStore.isProductFilterOptionAlwaysEnabled(filterOptionId)) return;
+
+        if (appliedProductFilterOptions.value.has(filterOptionId)) {
+            appliedProductFilterOptions.value.delete(filterOptionId);
         } else {
-            appliedProductFilterOptions.value.splice(index, 1);
+            appliedProductFilterOptions.value.add(filterOptionId);
         }
     }
 
     const resetFilters = () => {
         priceStart.value = minPrice.value || 0;
         priceEnd.value = maxPrice.value || 0;
-        appliedProductFilterOptions.value = [];
+        appliedProductFilterOptions.value.clear();
     }
 
     return {
@@ -77,6 +94,7 @@ const useProductsCatalogFilteringStore = defineStore('productsCatalogIndexFilter
         priceEnd,
         setupPriceRangeLimits,
         appliedProductFilterOptions,
+        enableProductFilterOption,
         toggleProductFilterOption,
         isProductFilterOptionApplied,
         resetFilters

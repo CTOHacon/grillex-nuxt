@@ -5,9 +5,16 @@
 		<HomeBrands />
 		<HomeAbout />
 	</OverlapSection>
-	<div class="after-first-screen-wrapper">
+	<div class="after-first-screen-wrapper mb-5-5">
 		<HomeCatalogMenu class="mb-2" />
 		<HomePromotionArea />
+	</div>
+	<HomeDividingText class="mb-5-5" />
+	<div class="container rest-of-content pt-2-5">
+		<NewProductsCarousel class="pl-2-5 pr-2-5 mb-3" />
+		<FavouritesCarousel class="pl-2-5 pr-2-5 mb-3" />
+		<CompanyAdvantages class="pl-2-5 pr-2-5 mb-5-5" />
+		<HomeFeaturedArticles class="pl-1 pr-1" />
 	</div>
 </template>
 
@@ -15,6 +22,8 @@
 import HomeAbout from '~/components/HomeAbout.vue';
 import HomeBrands from '~/components/HomeBrands.vue';
 import HomeCatalogMenu from '~/components/HomeCatalogMenu.vue';
+import HomeDividingText from '~/components/HomeDividingText.vue';
+import HomeFeaturedArticles from '~/components/HomeFeaturedArticles.vue';
 import HomeHero from '~/components/HomeHero.vue';
 import HomePromotionArea from '~/components/HomePromotionArea.vue';
 </script>
@@ -38,5 +47,10 @@ import HomePromotionArea from '~/components/HomePromotionArea.vue';
 		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
 		pointer-events: none;
 	}
+}
+.rest-of-content {
+	background: #fff;
+	padding-top: var(--size-2-5);
+	padding-bottom: var(--size-2-5);
 }
 </style>

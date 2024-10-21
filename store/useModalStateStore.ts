@@ -5,12 +5,16 @@ const useModalStateStore = defineStore('modalState', () => {
     const toggleModal = (modal: TModalTypes = null) => {
         activeModal.value = modal === activeModal.value ? null : modal;
     };
+    const openModal = (modal: TModalTypes) => {
+        activeModal.value = modal;
+    }
     const isActiveModal = (modal: TModalTypes) =>
         activeModal.value === modal;
 
     return {
         activeModal,
         toggleModal,
+        openModal,
         isActiveModal
     };
 });

@@ -1,0 +1,89 @@
+.post-content {
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 132%;
+
+	& > *:not(:last-child) {
+		margin-bottom: var(--size-1-5);
+	}
+
+	strong {
+		font-weight: 800;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		font-family: 'AA Duke';
+		letter-spacing: -0.02em;
+		text-transform: uppercase;
+		font-weight: 400;
+	}
+
+	h1 {
+		font-size: var(--size-4);
+		line-height: 88%;
+	}
+
+	h2 {
+		font-size: var(--size-3);
+		line-height: 104%;
+		margin-top: var(--size-3);
+	}
+
+	h3 {
+		font-size: var(--size-2);
+		line-height: 104%;
+		margin-top: var(--size-2-5);
+	}
+
+	ol,
+	ul {
+		list-style: none; // Remove default numbering
+		counter-reset: list-counter; // Initialize the counter
+		li:not(:last-child) {
+			margin-bottom: var(--size-1);
+		}
+	}
+
+	li[data-list='ordered'] {
+		counter-increment: list-counter;
+		padding-left: 2.5rem; // Add padding to the left of the list item
+		position: relative;
+		&::before {
+			content: counter(list-counter); // Insert the custom number
+			display: inline-block;
+			position: absolute;
+			left: 0;
+			top: -0.25rem;
+			width: 2rem; // Set width for the number container (adjust to your needs)
+			height: 2rem; // Set height for the number container (adjust to your needs)
+			border-radius: 50%; // Create a circular shape for the number
+			border: 0.0625rem solid #e4121f; // Red background color
+			text-align: center;
+			line-height: 1.9rem;
+			font-weight: 600;
+			margin-right: 0.5rem;
+		}
+	}
+	li[data-list='bullet'] {
+		position: relative;
+		padding-left: var(--size-2);
+		&::before {
+			content: '.';
+			display: inline-block;
+			position: absolute;
+			left: 0;
+			top: -0.65rem;
+
+			font-weight: 600;
+			font-size: 1.5rem;
+			line-height: 132%;
+			/* identical to box height, or 24px */
+			text-align: center;
+		}
+	}
+}

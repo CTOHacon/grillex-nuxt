@@ -1,3 +1,3 @@
-type TModalTypes = 'catalog' | 'cart' | null;
+type TModalTypes = 'catalog' | 'cart' | 'search' | null;
 
 export default TModalTypes;

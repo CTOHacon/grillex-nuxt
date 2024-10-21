@@ -1,9 +1,7 @@
 import type { TWebPageSEO } from "./TWebPageSEO";
-import type { TMediaFile } from "./TMediaFile";
-import type { TWebPageSEOResource } from "./TWebPageSEOResource";
 import type { TWebPageData } from "./TWebPageData";
 
-export interface TWebPage<TData = any> {
+export type TWebPage<TData = any> = {
 	id: number;
 	web_pageable_id: number;
 	web_pageable_type: string;
@@ -17,4 +15,8 @@ export interface TWebPage<TData = any> {
 		title: string;
 		path: string;
 	}[];
+}
+
+export type TLoadsWebPage = {
+	web_page: TWebPage;
 }

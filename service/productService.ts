@@ -4,6 +4,7 @@ import type { TLoadsProductVariations } from "~/types/TProductVariation";
 
 const productService = {
     fetch: async (id: number) => {
+        if (!id) return null;
         const { api } = useApi();
         return api<TProduct & TLoadsProductVariations>(`/products/${id}`, {
             params: {
@@ -37,6 +38,18 @@ const productService = {
             },
             onRequest: () => {
                 console.info('📥 Fetching product selection');
+            }
+        });
+    },
+    search: async (query: string) => {
+        const { api } = useApi();
+        return api<(TProduct & TLoadsProductVariations)[]>(`/products/search`, {
+            params: {
+                query,
+                'with': 'productVariations'
+            },
+            onRequest: () => {
+                console.info('📥 Fetching search result');
             }
         });
     }

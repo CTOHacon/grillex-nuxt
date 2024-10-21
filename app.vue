@@ -9,21 +9,24 @@
 import useLocaleStore from './store/useLocaleStore';
 import useGlobalSettingsStorage from './store/useGlobalSettingsStore';
 import './styles/app.scss';
+import useCartStore from './store/useCartStore';
+import useFavouritesStore from './store/useFavouritesStrore';
 
 const { locale } = useI18n();
 useLocaleStore().changeLocale(locale.value);
-
-// const browserLocale = getBrowserLocale();
-// const cookieLocale = getLocaleCookie();
-
-// if (!cookieLocale) {
-// 	localeStore.changeLocale(browserLocale || 'uk');
-// } else {
-// 	localeStore.changeLocale(cookieLocale || 'uk');
-// }
 
 const globalSettingsStore = useGlobalSettingsStorage();
 if (import.meta.server) {
 	await globalSettingsStore.fetch();
 }
+
+const cartStore = useCartStore();
+onMounted(() => {
+	cartStore.syncCartWithServer();
+});
+
+const favoutitesStore = useFavouritesStore();
+onMounted(() => {
+	favoutitesStore.syncFavouritesWithServer();
+});
 </script>

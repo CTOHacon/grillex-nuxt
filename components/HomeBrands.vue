@@ -1,5 +1,5 @@
 <template>
-	<section class="home-brands">
+	<section class="home-brands" v-if="brands && Array.isArray(brands)">
 		<ul class="container home-brands__list">
 			<li
 				class="home-brands__item"
@@ -21,8 +21,8 @@
 import useGlobalSettingsStore from '~/store/useGlobalSettingsStore';
 import HomeBrandsCard from './HomeBrandsCard.vue';
 
-const globalSettings = useGlobalSettingsStore();
-const brands = globalSettings.data?.brands_menu?.items || [];
+const { getData, data } = useGlobalSettingsStore();
+const brands = getData('brands_menu.items');
 </script>
 
 <style scoped lang="scss">

@@ -1,24 +1,28 @@
 <template>
-	<section class="container home-catalog-menu">
-		<h2 class="home-catalog-menu__title" v-html="catalogMenuData.title" />
+	<section
+		class="container home-catalog-menu"
+		v-if="items && Array.isArray(items)"
+	>
+		<h2 class="home-catalog-menu__title" v-html="title" v-if="title" />
 		<p
 			class="home-catalog-menu__subtitle"
-			v-html="catalogMenuData.subtitle"
+			v-html="subtitle"
+			v-if="subtitle"
 		/>
-		<ul class="home-catalog-menu__items">
+		<ul class="home-catalog-menu__items" v-if="items">
 			<li
 				class="home-catalog-menu__item"
-				v-for="item in catalogMenuData.items"
+				v-for="item in items"
 				:class="{
-					_wide: item.brands?.length
+					_wide: item?.brands?.length
 				}"
 			>
 				<HomeCatalogMenuCard
-					:title="item.title"
-					:description="item.description"
-					:image="item.image"
-					:link="item.link"
-					:brands="item.brands || []"
+					:title="item?.title || ''"
+					:description="item?.description || ''"
+					:image="item?.image || ''"
+					:link="item?.link || ''"
+					:brands="item?.brands || []"
 				/>
 			</li>
 		</ul>
@@ -29,8 +33,10 @@
 import HomeCatalogMenuCard from '@/components/HomeCatalogMenuCard.vue';
 import useWebPageStore from '~/store/useWebPageStore';
 
-const webPage = useWebPageStore();
-const catalogMenuData = webPage.data?.data?.data?.catalog_menu || {};
+const { getData } = useWebPageStore();
+const title = getData('catalog_menu.title');
+const subtitle = getData('catalog_menu.subtitle');
+const items = getData('catalog_menu.items');
 </script>
 
 <style scoped lang="scss">
@@ -60,6 +66,12 @@ const catalogMenuData = webPage.data?.data?.data?.catalog_menu || {};
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: 1rem;
+	@media (max-width: $tablet-width) {
+		grid-template-columns: 1fr 1fr;
+	}
+	@media (max-width: $mobile-width) {
+		grid-template-columns: 1fr;
+	}
 	&:not(:first-child) {
 		margin-top: var(--size-5);
 	}
@@ -70,7 +82,9 @@ const catalogMenuData = webPage.data?.data?.data?.catalog_menu || {};
 		width: 100%;
 	}
 	&._wide {
-		grid-column: span 2;
+		@media (min-width: $mobile-width) {
+			grid-column: span 2;
+		}
 	}
 }
 </style>

@@ -31,12 +31,12 @@ import htmlTagsDestroyer from '~/utils/htmlTagsDestroyer';
 import useWebPageStore from '~/store/useWebPageStore';
 import useMediaFilesStore from '~/store/useMediaFilesStore';
 
-const webPage = useWebPageStore();
-const data = webPage.data?.data.data || ({} as any);
-const title = data?.about?.title || '';
-const text = data?.about?.text || '';
-const link = data?.about?.link || '';
-const imageReference = data?.about?.image || '';
+const { getData } = useWebPageStore();
+const title = getData('about.title');
+const text = getData('about.text');
+const link = getData('about.link');
+const imageReference = getData('about.image');
+
 const { mediaFile: homeAboutImage } =
 	useMediaFilesStore().useMediaFile(imageReference);
 </script>

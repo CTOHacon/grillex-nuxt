@@ -1,12 +1,7 @@
 <template>
 	<section class="products-carousel">
 		<div class="products-carousel__head">
-			<SectionTitle
-				class="products-carousel__head-title color-roman-silver"
-				:tagname="'h2'"
-			>
-				{{ title }}
-			</SectionTitle>
+			<slot name="title" />
 			<SliderNavigation
 				:isFirstSlide="isFirstSlide"
 				:isLastSlide="isLastSlide"
@@ -20,13 +15,10 @@
 			:space-between="0"
 			@swiper="e => (swiperInstance = e)"
 			:breakpoints="{
-				430: {
-					slidesPerView: 2
-				},
-				768: {
+				740: {
 					slidesPerView: 3
 				},
-				1024: {
+				1080: {
 					slidesPerView: 'auto'
 				}
 			}"
@@ -51,7 +43,6 @@ import type { TLoadsProductVariations } from '~/types/TProductVariation';
 import SliderNavigation from './SliderNavigation.vue';
 
 defineProps<{
-	title: string;
 	products: (TProduct & TLoadsProductVariations)[];
 }>();
 

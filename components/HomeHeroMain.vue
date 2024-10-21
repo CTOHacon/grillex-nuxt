@@ -2,14 +2,13 @@
 	<div class="home-hero-main">
 		<div class="home-hero-main__inner">
 			<h1 class="home-hero-main__title" v-html="title" />
-			<p
-				class="fs-1-5 home-hero-main__text color-semi-gray lh-133"
-				v-html="text"
-			/>
+			<p class="fs-1-5 home-hero-main__text" v-html="text" />
 			<img
 				v-if="heroImage"
-				:src="heroImage?.url"
-				:alt="title"
+				:src="heroImage.url"
+				:width="heroImage.sizes?.full.width"
+				:height="heroImage.sizes?.full.height"
+				:alt="htmlTagsDestroyer(title)"
 				class="home-hero-main__image"
 			/>
 		</div>
@@ -19,13 +18,14 @@
 <script setup lang="ts">
 import useMediaFilesStore from '~/store/useMediaFilesStore';
 import useWebPageStore from '~/store/useWebPageStore';
+import htmlTagsDestroyer from '~/utils/htmlTagsDestroyer';
 const mediaFilesStore = useMediaFilesStore();
 
-const webPage = useWebPageStore();
-const data = webPage.data?.data.data || ({} as any);
-const title = data?.hero_main?.title || '';
-const text = data?.hero_main?.text || '';
-const imageReference = data?.hero_main?.image || '';
+const { getData } = useWebPageStore();
+const title = getData('hero_main.title');
+const text = getData('hero_main.text');
+const imageReference = getData('hero_main.image');
+
 const { mediaFile: heroImage } = mediaFilesStore.useMediaFile(imageReference);
 </script>
 

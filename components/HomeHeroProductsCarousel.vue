@@ -11,6 +11,7 @@
 			pauseOnMouseEnter: true
 		}"
 		class="home-hero-products-carousel"
+		v-if="items && Array.isArray(items)"
 	>
 		<button
 			class="home-hero-products-carousel__nav-button _prev"
@@ -53,9 +54,8 @@ import { Autoplay } from 'swiper/modules';
 import { ref } from 'vue';
 import useWebPageStore from '~/store/useWebPageStore';
 
-const webPage = useWebPageStore();
-const data = webPage?.data?.data.data || ({} as any);
-const items = data?.featured_products || [];
+const { getData } = useWebPageStore();
+const items = getData('featured_products');
 
 const swiper = ref<SwiperCoreInstance | null>(null);
 

@@ -47,7 +47,9 @@ const emit = defineEmits({
 	background: #f9f9f9;
 }
 .base-table-of-contents__title {
-	padding: 1rem 1rem 0 1rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	padding: 1.5rem 1rem 0 2rem;
 }
 .base-table-of-contents__list {
 	padding: 1.5rem 0;
@@ -64,6 +66,7 @@ const emit = defineEmits({
 .base-table-of-contents__list-item-anchor-icon {
 	width: 1em;
 	height: 1em;
+	min-width: 1em;
 	transition: color 0.2s ease-in-out;
 }
 .base-table-of-contents__list-item-anchor:hover

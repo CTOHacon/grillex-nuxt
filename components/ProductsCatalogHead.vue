@@ -1,6 +1,6 @@
 <template>
 	<section class="catalog-head-area">
-		<SectionTitle tagname="h2">
+		<SectionTitle tagname="h2" size="2-5">
 			{{ webPageStore.data?.title }}
 		</SectionTitle>
 		<CatalogQuerySettings />
@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import useProductsCatalogStore from '~/store/useProductsCatalogStore';
 import CatalogQuerySettings from './CatalogQuerySettings.vue';
 import SectionTitle from './SectionTitle.vue';
 import useWebPageStore from '~/store/useWebPageStore';

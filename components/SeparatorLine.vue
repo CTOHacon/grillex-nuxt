@@ -8,7 +8,6 @@
 .separator-line {
 	border: none;
 	border-top: 0.0625rem solid #80868e;
-	margin: 0;
 	padding: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="home-promotion-area-product flex-column">
+	<div class="home-promotion-area-product" v-if="title || subtitle || text">
 		<img
 			v-if="image"
 			:src="image.url"
@@ -45,24 +45,24 @@ import type { TProduct } from '~/types/TProduct';
 import type { TLoadsProductVariations } from '~/types/TProductVariation';
 import htmlTagsDestroyer from '~/utils/htmlTagsDestroyer';
 import HomePromotionAreaProductCard from './HomePromotionAreaProductCard.vue';
-
-// import HomeRecomendationsProductCard from './HomeRecomendationsProductCard.vue';
-
-const webPageData = useWebPageStore().data?.data?.data || ({} as any);
-const title = webPageData?.promotion_area?.promo_product.title || '';
-const subtitle = webPageData?.promotion_area?.promo_product.subtitle || '';
-const text = webPageData?.promotion_area?.promo_product.text || '';
-
 const mediaFilesStore = useMediaFilesStore();
-const imageReference = webPageData?.promotion_area?.promo_product.image || '';
+const { getData } = useWebPageStore();
+
+const title = getData('promotion_area.promo_product.title');
+const subtitle = getData('promotion_area.promo_product.subtitle');
+const text = getData('promotion_area.promo_product.text');
+
+const imageReference = getData('promotion_area.promo_product.image');
 const { mediaFile: image } = mediaFilesStore.useMediaFile(imageReference);
 
-const productId = webPageData?.promotion_area?.promo_product.product_id || '';
-const product = ref<TProduct & TLoadsProductVariations>();
+const productId = getData('promotion_area.promo_product.product_id');
+const product = ref<(TProduct & TLoadsProductVariations) | null>();
 try {
-	product.value = await productService.fetch(productId);
-	mediaFilesStore.addMediaFilesToLoad(product.value.image);
-	await mediaFilesStore.loadMediaFiles();
+	product.value = await productService.fetch(productId.value);
+	if (product.value) {
+		mediaFilesStore.addMediaFilesToLoad(product.value.image);
+		await mediaFilesStore.loadMediaFiles();
+	}
 } catch (error) {
 	console.error(error);
 }
@@ -92,7 +92,7 @@ try {
 .home-promotion-area-product__title {
 	font-family: 'AA Duke';
 	font-weight: 400;
-	font-size: 5.5rem;
+	font-size: var(--size-5-5);
 	line-height: 88%;
 	text-transform: uppercase;
 	color: #ffffff;
@@ -101,7 +101,7 @@ try {
 .home-promotion-area-product__subtitle {
 	font-family: 'AA Duke';
 	font-weight: 400;
-	font-size: 3.5rem;
+	font-size: var(--size-3-5);
 	line-height: 96%;
 	text-transform: uppercase;
 	color: #a57a45;
@@ -109,7 +109,7 @@ try {
 .home-promotion-area-product__text {
 	margin-top: var(--size-3);
 	margin-bottom: var(--size-3);
-	font-size: 1.125rem;
+	font-size: var(--size-1-125);
 	letter-spacing: -0.02em;
 	color: #d5d5d5;
 	opacity: 0.8;

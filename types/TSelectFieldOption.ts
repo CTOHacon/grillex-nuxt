@@ -1,4 +1,4 @@
-export type ISelectFieldOption<ValueType = string> {
+export type TSelectFieldOption<ValueType = string> {
 	value: ValueType;
 	label: string;
 }

@@ -1,6 +1,6 @@
 type TFooterMenuItem = {
 	title: string;
-	link: string;
+	url: string;
 };
 
 export type TFooterMenuColumn = {
