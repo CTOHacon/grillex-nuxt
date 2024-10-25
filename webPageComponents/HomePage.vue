@@ -10,7 +10,7 @@
 		<HomePromotionArea />
 	</div>
 	<HomeDividingText class="mb-5-5" />
-	<div class="container rest-of-content pt-2-5">
+	<div class="container rest-of-content pt-2-5 mb-3">
 		<NewProductsCarousel class="pl-2-5 pr-2-5 mb-3" />
 		<FavouritesCarousel class="pl-2-5 pr-2-5 mb-3" />
 		<CompanyAdvantages class="pl-2-5 pr-2-5 mb-5-5" />

@@ -1,7 +1,7 @@
 <template>
 	<HeaderSpacer />
 	<Breadcrumbs class="container" />
-	<main class="container _drop-tw product-page-main-content">
+	<main class="container _drop-tw product-page-main-content mb-3">
 		<ProductPageControlsBar />
 		<div class="prodcut-page-content-layout">
 			<div class="prodcut-page-content-layout__aside">

@@ -37,7 +37,6 @@ const breadcrumbs = props.breadcrumbs || webPageStore.data?.breadcrumbs;
 <style scoped lang="scss">
 @import '~/styles/variables.scss';
 .breadcrumbs {
-	max-width: 100%;
 	&__list {
 		display: flex;
 		align-items: center;

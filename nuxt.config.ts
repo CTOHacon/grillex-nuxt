@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     routeRules: {
         '*': {
             prerender: false,
-            // swr: 30, // 30 seconds
+            swr: 300,
         },
     },
 
@@ -49,11 +49,11 @@ export default defineNuxtConfig({
                 language: 'ru',
                 name: 'Русский',
             },
-            {
-                code: 'en',
-                language: 'en',
-                name: 'English',
-            },
+            // {
+            //     code: 'en',
+            //     language: 'en',
+            //     name: 'English',
+            // },
         ],
         defaultLocale: 'uk',
         strategy: 'prefix_except_default',

@@ -2,7 +2,9 @@
 	<AppLayout>
 		<UsePreloader>
 			<HeaderSpacer />
-			<Breadcrumbs class="container" />
+			<div class="container">
+				<Breadcrumbs />
+			</div>
 			<div
 				class="container _drop-tw cart-main"
 				v-if="cart.totalCartQuantity.value > 0"

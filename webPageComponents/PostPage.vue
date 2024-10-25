@@ -4,7 +4,7 @@
 		<Breadcrumbs class="" />
 		<CopyLinkButton :link="link" />
 	</div>
-	<div class="container post-main-layout">
+	<div class="container post-main-layout mb-3">
 		<main class="post-main-layout__main">
 			<BlocksRenderer :blocks="webPage?.data.data.content || []" />
 		</main>
