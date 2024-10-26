@@ -2,7 +2,6 @@ import type { Ref } from 'vue';
 import useLocaleStore from '~/store/useLocaleStore';
 
 const tokenKey = 'tok';
-const backendBase = process.env.API_BASE || 'http://127.0.0.1:8000';
 const appApiBase = '/api';
 
 type TAPIOptions = {
@@ -13,13 +12,14 @@ type TAPIOptions = {
 
 export const useApi = (options: TAPIOptions = {}) => {
     const localeStore = useLocaleStore();
+    const config = useRuntimeConfig()
 
     const {
         apiBase = appApiBase,
         translated = true
     } = options;
 
-    const baseURL = `${backendBase}/${apiBase}`.replace(/([^:]\/)\/+/g, '$1');
+    const baseURL = `${config.public.API_BASE}/${apiBase}`.replace(/([^:]\/)\/+/g, '$1');
 
     // useCookie for token in future
     let token = '';
