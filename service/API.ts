@@ -2,7 +2,7 @@ import type { Ref } from 'vue';
 import useLocaleStore from '~/store/useLocaleStore';
 
 const tokenKey = 'tok';
-const backendBase = 'http://127.0.0.1:8000';
+const backendBase = process.env.API_BASE || 'http://127.0.0.1:8000';
 const appApiBase = '/api';
 
 type TAPIOptions = {
