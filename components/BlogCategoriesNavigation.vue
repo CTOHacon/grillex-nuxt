@@ -22,7 +22,7 @@ const { data: postCategoriesIndexData } = storeToRefs(postCategoriesIndex);
 const tabs = ref<TTabsControlItem[]>([]);
 tabs.value =
 	postCategoriesIndexData.value?.map(item => ({
-		key: `/${item.web_page.compiled_path}`,
+		key: item.web_page.compiled_path,
 		title: item.name
 	})) || [];
 tabs.value.unshift({
