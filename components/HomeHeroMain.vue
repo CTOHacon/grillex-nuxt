@@ -3,11 +3,8 @@
 		<div class="home-hero-main__inner">
 			<h1 class="home-hero-main__title" v-html="title" />
 			<p class="fs-1-5 home-hero-main__text" v-html="text" />
-			<img
-				v-if="heroImage"
-				:src="heroImage.url"
-				:width="heroImage.sizes?.full.width"
-				:height="heroImage.sizes?.full.height"
+			<ServerImage
+				:reference="imageReference"
 				:alt="htmlTagsDestroyer(title)"
 				class="home-hero-main__image"
 			/>
@@ -16,17 +13,14 @@
 </template>
 
 <script setup lang="ts">
-import useMediaFilesStore from '~/store/useMediaFilesStore';
 import useWebPageStore from '~/store/useWebPageStore';
 import htmlTagsDestroyer from '~/utils/htmlTagsDestroyer';
-const mediaFilesStore = useMediaFilesStore();
+import ServerImage from './ServerImage.vue';
 
 const { getData } = useWebPageStore();
 const title = getData('hero_main.title');
 const text = getData('hero_main.text');
 const imageReference = getData('hero_main.image');
-
-const { mediaFile: heroImage } = mediaFilesStore.useMediaFile(imageReference);
 </script>
 
 <style scoped lang="scss">
@@ -54,7 +48,7 @@ const { mediaFile: heroImage } = mediaFilesStore.useMediaFile(imageReference);
 	flex-direction: column;
 	align-items: center;
 	@media (max-width: $tablet-width) {
-		min-height: calc(100vh - var(--full-header-height, 6.6875rem));
+		min-height: unset;
 		flex-direction: column;
 		display: flex;
 		justify-content: flex-end;

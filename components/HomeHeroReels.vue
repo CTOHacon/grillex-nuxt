@@ -7,7 +7,7 @@
 		:effect="'fade'"
 		:loop="true"
 		:autoplay="{
-			delay: 6000,
+			delay: itemDuration,
 			disableOnInteraction: false,
 			pauseOnMouseEnter: true
 		}"
@@ -37,6 +37,7 @@ import useWebPageStore from '~/store/useWebPageStore';
 
 const { getData } = useWebPageStore();
 const items = getData('hero_reels');
+const itemDuration = 6000;
 </script>
 
 <style scoped lang="scss">

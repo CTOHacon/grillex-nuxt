@@ -1,5 +1,5 @@
 <template>
-	<article class="home-hero-reels-slide">
+	<a :href="link" class="home-hero-reels-slide">
 		<div class="home-hero-reels-slide__image-container">
 			<img
 				v-if="image"
@@ -11,15 +11,15 @@
 		</div>
 		<div class="home-hero-reels-slide__content">
 			<h4 class="home-hero-reels-slide__title">
-				<span v-for="(title, index) in slpitedTitle" :key="index">
+				<span v-for="(title, index) in splittedTitle" :key="index">
 					{{ title }}
 				</span>
 			</h4>
-			<LinkForwardButton class="home-hero-reels-slide__link" :href="link">
+			<LinkForwardButton class="home-hero-reels-slide__link">
 				{{ $t('details') }}
 			</LinkForwardButton>
 		</div>
-	</article>
+	</a>
 </template>
 
 <script setup lang="ts">
@@ -33,7 +33,7 @@ const props = defineProps<{
 	title: string;
 	link: string;
 }>();
-const slpitedTitle = computed(() => props.title.split('<br>'));
+const splittedTitle = computed(() => props.title.split('<br>'));
 
 const mediaFilesStore = useMediaFilesStore();
 const { mediaFile: image } = mediaFilesStore.useMediaFile(props.imageReference);
