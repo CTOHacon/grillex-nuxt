@@ -1,5 +1,5 @@
 <template>
-	<ul class="catalog-modal-navigaion" v-if="catalogMenu">
+	<ul class="catalog-modal-navigation" v-if="catalogMenu">
 		<CatalogModalNavigationCard
 			class="_grills"
 			:image-url="grillsMenuImage?.url"
@@ -80,7 +80,7 @@ const { mediaFile: cylindersIgnitionMenuImage } = mediaFilesStore.useMediaFile(
 
 <style scoped lang="scss">
 @import '~/styles/variables.scss';
-.catalog-modal-navigaion {
+.catalog-modal-navigation {
 	display: grid;
 	grid-template-areas:
 		'grills grills grills accessories accessories accessories cylinders_ignition cylinders_ignition cylinders_ignition cylinders_ignition'

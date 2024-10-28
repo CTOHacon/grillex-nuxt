@@ -7,7 +7,7 @@
 				:key="index"
 			>
 				<HomeBrandsCard
-					:href="brand.link"
+					:href="brand.url"
 					:name="brand.title"
 					:logo-reference="brand.logo"
 					class="flex-col"
