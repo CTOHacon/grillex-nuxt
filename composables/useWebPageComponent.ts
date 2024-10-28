@@ -8,7 +8,12 @@ import setup404Response from '~/utils/setup404Response';
  */
 const webPageComponents: Record<string, Promise<any>> = {
     'home': import('~/webPageComponents/HomePage.vue'),
+
+    // !! LEGACY
     'category-page': import('~/webPageComponents/ProductCategoryPage.vue'),
+    // !! END LEGACY
+
+    'product-category-page': import('~/webPageComponents/ProductCategoryPage.vue'),
     'filtered-category-page': import('~/webPageComponents/ProductCategoryPage.vue'),
     'product-page': import('~/webPageComponents/ProductVariationPage.vue'),
     'post-page': import('~/webPageComponents/PostPage.vue'),
