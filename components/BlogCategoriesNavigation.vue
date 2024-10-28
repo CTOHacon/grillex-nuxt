@@ -22,11 +22,11 @@ const { data: postCategoriesIndexData } = storeToRefs(postCategoriesIndex);
 const tabs = ref<TTabsControlItem[]>([]);
 tabs.value =
 	postCategoriesIndexData.value?.map(item => ({
-		key: item.web_page.compiled_path,
+		key: `/${item.web_page.compiled_path}`,
 		title: item.name
 	})) || [];
 tabs.value.unshift({
-	key: 'blog',
+	key: '/blog',
 	title: t('all')
 });
 
@@ -34,7 +34,7 @@ const postCategoryStore = usePostCategoryStore();
 const { data: postCategoryData } = storeToRefs(postCategoryStore);
 
 const activeTab = computed(() => {
-	return postCategoryData.value?.web_page.compiled_path || 'blog';
+	return postCategoryData.value?.web_page.compiled_path || '/blog';
 });
 
 const onChange = (key: string) => {
