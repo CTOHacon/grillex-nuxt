@@ -19,7 +19,7 @@ import SectionTitle from './SectionTitle.vue';
 const { addMediaFilesToLoad, loadMediaFiles } = useMediaFilesStore();
 
 const { data: newProducts } = await useAsyncData(() => {
-	const result = productService.fetchAllByQuery({
+	const result = productService.fetchPortion({
 		is_featured: true
 	});
 	return result;

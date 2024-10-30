@@ -18,7 +18,7 @@ import useMediaFilesStore from '~/store/useMediaFilesStore';
 const { addMediaFilesToLoad, loadMediaFiles } = useMediaFilesStore();
 
 const { data: newProducts } = await useAsyncData(() => {
-	const result = productService.fetchAllByQuery({
+	const result = productService.fetchPortion({
 		is_new: true
 	});
 	return result;
