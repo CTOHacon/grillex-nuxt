@@ -44,11 +44,11 @@ export default defineNuxtConfig({
                 language: 'uk',
                 name: 'Українська',
             },
-            {
-                code: 'ru',
-                language: 'ru',
-                name: 'Русский',
-            },
+            // {
+            //     code: 'ru',
+            //     language: 'ru',
+            //     name: 'Русский',
+            // },
             // {
             //     code: 'en',
             //     language: 'en',
