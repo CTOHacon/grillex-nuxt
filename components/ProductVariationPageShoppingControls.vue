@@ -68,7 +68,7 @@ const localePath = useLocalePath();
 
 const addToCart = () => {
 	if (!productVariationForWebPage.data) return;
-	if (!isInCart) {
+	if (!isInCart.value) {
 		cartStore.addItemToCart(
 			productVariationForWebPage.data,
 			addToCartQuantity.value
@@ -79,7 +79,7 @@ const addToCart = () => {
 };
 const oneClickBuy = () => {
 	if (!productVariationForWebPage.data) return;
-	if (!isInCart) {
+	if (!isInCart.value) {
 		cartStore.addItemToCart(
 			productVariationForWebPage.data,
 			addToCartQuantity.value

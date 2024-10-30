@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     routeRules: {
         '*': {
             prerender: false,
-            swr: 300,
+            // swr: 300,
         },
     },
 

@@ -38,7 +38,15 @@ export const fetchProductsCatalog = async () => {
             productCategoryId: productCategoryId.value,
         },
         onRequest: () => {
-            console.info('📥 Fetching products catalog');
+            console.info('📥 Fetching products catalog', {
+                perPage: perPage,
+                sorting: sorting,
+                priceStart: priceStart,
+                priceEnd: priceEnd,
+                "appliedProductFilterOptions[]": Array.from(appliedProductFilterOptions),
+                paged: paged.value,
+                productCategoryId: productCategoryId.value,
+            });
         },
     });
 }
