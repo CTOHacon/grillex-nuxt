@@ -22,12 +22,12 @@
 		</div>
 		<CatalogModalToggleButton class="header__toggle-catalog" />
 		<ProductsSearchForm class="header__search none-tw" />
-		<UsePreloader class="header__buttons-group">
+		<div class="header__buttons-group">
 			<HeaderFavouritesButton
 				:class="isScrollingToBottom ? 'fs-0-875' : 'fs-1'"
 			/>
 			<CartModalToggleButton :active="false" />
-		</UsePreloader>
+		</div>
 	</BaseHeader>
 </template>
 
