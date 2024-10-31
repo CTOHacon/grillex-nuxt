@@ -7,6 +7,7 @@
 				<ServerImage
 					:reference="imageReference"
 					:alt="htmlTagsDestroyer(title)"
+					:eager="true"
 					class="home-hero-main__image"
 				/>
 			</div>
