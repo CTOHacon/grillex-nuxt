@@ -6,6 +6,8 @@
 		:loading="eager ? 'eager' : 'lazy'"
 		:srcset="srcsetAttribute"
 		:sizes="sizesAttribute"
+		:width="mediaFile.sizes?.full.width"
+		:height="mediaFile.sizes?.full.height"
 	/>
 </template>
 

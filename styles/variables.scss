@@ -1,3 +1,5 @@
+@import './css-variables.scss';
+
 $large-desktop-width: 1680px;
 $middle-desktop-width: 1440px;
 $tablet-width: 1080px;
@@ -9,17 +11,6 @@ $breakpoints: (
 	'tw': $tablet-width,
 	'mw': $mobile-width
 );
-
-:root {
-	--main-font-family: 'Inter Tight', sans-serif;
-
-	--main-line-height: 1.21;
-
-	--border-radius: 1rem;
-	@media (max-width: $tablet-width) {
-		--border-radius: 2rem;
-	}
-}
 
 $sizes: (
 	'0-25': (
@@ -89,17 +80,3 @@ $sizes: (
 		'mw': 4rem
 	)
 );
-
-// global colors
-:root {
-	--color-black: #1d1d1f;
-	--color-semi-white: #fbfbfd;
-	--color-black: #101011;
-	--color-white: #fff;
-	--color-dark: #303030;
-	--color-semi-gray: #d4d4d4;
-	--color-bright-gray: #ededed;
-	--color-red: #e4121f;
-	--color-roman-silver: #80868e;
-	--color-metallic-bronze: #a57a45;
-}

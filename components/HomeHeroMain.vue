@@ -3,11 +3,13 @@
 		<div class="home-hero-main__inner">
 			<h1 class="home-hero-main__title" v-html="title" />
 			<p class="fs-1-5 home-hero-main__text" v-html="text" />
-			<ServerImage
-				:reference="imageReference"
-				:alt="htmlTagsDestroyer(title)"
-				class="home-hero-main__image"
-			/>
+			<div class="home-hero-main__image-container">
+				<ServerImage
+					:reference="imageReference"
+					:alt="htmlTagsDestroyer(title)"
+					class="home-hero-main__image"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -75,7 +77,7 @@ const imageReference = getData('hero_main.image');
 	line-height: 133%;
 	color: #d5d5d5;
 }
-.home-hero-main__image {
+&__image-container {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
@@ -84,9 +86,15 @@ const imageReference = getData('hero_main.image');
 	max-width: unset;
 	width: auto;
 	@media (max-width: $tablet-width) {
-		height: 40vh;
+		height: 13rem;
 		position: relative;
 		align-self: baseline;
 	}
+}
+.home-hero-main__image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center bottom;
 }
 </style>

@@ -1,12 +1,10 @@
 <template>
 	<a :href="link" class="home-hero-reels-slide">
 		<div class="home-hero-reels-slide__image-container">
-			<img
-				v-if="image"
-				:src="image?.url"
-				width="800"
-				height="600"
+			<ServerImage
+				:reference="imageReference"
 				:alt="htmlTagsDestroyer(title)"
+				class="home-hero-reels-slide__image"
 			/>
 		</div>
 		<div class="home-hero-reels-slide__content">
@@ -34,9 +32,6 @@ const props = defineProps<{
 	link: string;
 }>();
 const splittedTitle = computed(() => props.title.split('<br>'));
-
-const mediaFilesStore = useMediaFilesStore();
-const { mediaFile: image } = mediaFilesStore.useMediaFile(props.imageReference);
 </script>
 
 <style scoped lang="scss">
