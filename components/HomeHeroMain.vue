@@ -28,10 +28,12 @@ const imageReference = getData('hero_main.image');
 <style scoped lang="scss">
 @import '~/styles/variables.scss';
 .home-hero-main {
-	background: url(/public/images/hero-main-background.jpg) no-repeat center
-		center;
-	background-size: cover;
 	overflow: hidden;
+	@media (min-width: $tablet-width) {
+		background: url(/public/images/hero-main-background.jpg) no-repeat
+			center center;
+		background-size: cover;
+	}
 }
 .home-hero-main__inner {
 	min-height: 48.75rem;
@@ -58,7 +60,7 @@ const imageReference = getData('hero_main.image');
 	}
 }
 .home-hero-main__title {
-	font-family: 'AA Duke';
+	font-family: 'AA Duke', sans-serif;
 	font-size: var(--size-5-5);
 	line-height: 96%;
 	text-transform: uppercase;
