@@ -1,14 +1,6 @@
-@import './variables.scss';
 :root {
 	--main-font-family: 'Inter Tight', sans-serif;
-
 	--main-line-height: 1.21;
-
-	--border-radius: 1rem;
-	@media (max-width: $tablet-width) {
-		--border-radius: 2rem;
-	}
-
 	--color-black: #1d1d1f;
 	--color-semi-white: #fbfbfd;
 	--color-black: #101011;
@@ -19,4 +11,8 @@
 	--color-red: #e4121f;
 	--color-roman-silver: #80868e;
 	--color-metallic-bronze: #a57a45;
+	--border-radius: 1rem;
+	@media (max-width: $tablet-width) {
+		--border-radius: 2rem;
+	}
 }

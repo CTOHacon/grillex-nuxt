@@ -77,7 +77,7 @@ const imageReference = getData('hero_main.image');
 	line-height: 133%;
 	color: #d5d5d5;
 }
-&__image-container {
+.home-hero-main__image-container {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
