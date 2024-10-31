@@ -44,6 +44,10 @@ useHead({
 			content: webPage.value?.seo?.description
 		},
 		{
+			name: 'robots',
+			content: webPage.value?.seo?.robots
+		},
+		{
 			property: 'og:image',
 			content: ogImageUrl
 		}
