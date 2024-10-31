@@ -66,6 +66,9 @@ const imageReference = getData('hero_main.image');
 	text-transform: uppercase;
 	color: #f9f9f9;
 	font-weight: 300;
+	strong {
+		font-weight: 300;
+	}
 	margin-bottom: var(--size-1-5);
 	:deep(strong) {
 		display: block;

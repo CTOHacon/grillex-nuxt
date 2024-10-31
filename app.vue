@@ -29,4 +29,26 @@ const favoutitesStore = useFavouritesStore();
 onMounted(() => {
 	favoutitesStore.syncFavouritesWithServer();
 });
+
+useHead({
+	link: [
+		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+		{
+			rel: 'preconnect',
+			href: 'https://fonts.gstatic.com',
+			crossorigin: 'anonymous'
+		},
+		{
+			rel: 'stylesheet',
+			href: 'https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap'
+		},
+		{
+			rel: 'preload',
+			href: '/AADuke-Fill.woff2',
+			as: 'font',
+			type: 'font/woff2',
+			crossorigin: 'anonymous'
+		}
+	]
+});
 </script>
