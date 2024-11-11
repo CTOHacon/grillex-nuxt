@@ -1,24 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
     <symbol id="catalog" viewBox="0 0 32 32" fill="none">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="path-1-inside-1_2728_10192" fill="var(--icon-color, currentColor)">
-                <rect x="5" y="5" width="10" height="10" rx="1" />
-            </mask>
-            <rect x="5" y="5" width="10" height="10" rx="1" stroke="var(--icon-color, currentColor)" stroke-width="1.5"
-                mask="url(#path-1-inside-1_2728_10192)" />
-            <mask id="path-2-inside-2_2728_10192" fill="var(--icon-color, currentColor)">
-                <rect x="5" y="17" width="10" height="10" rx="1" />
-            </mask>
-            <rect x="5" y="17" width="10" height="10" rx="1" stroke="var(--icon-color, currentColor)" stroke-width="1.5"
-                mask="url(#path-2-inside-2_2728_10192)" />
-            <rect x="22" y="3.99035" width="8.5" height="8.5" rx="4.25" transform="rotate(45 22 3.99035)"
-                stroke="var(--icon-color, currentColor)" stroke-width="1.5" />
-            <mask id="path-4-inside-3_2728_10192" fill="var(--icon-color, currentColor)">
-                <rect x="17" y="17" width="10" height="10" rx="1" />
-            </mask>
-            <rect x="17" y="17" width="10" height="10" rx="1" stroke="var(--icon-color, currentColor)"
-                stroke-width="1.5" mask="url(#path-4-inside-3_2728_10192)" />
-        </svg>
+        <rect x="5.92871" y="5" width="10" height="10" rx="1" />
+        <rect x="5.92871" y="5" width="10" height="10" rx="1" stroke="white" stroke-width="3"
+            mask="url(#path-1-inside-1_4166_11179)" />
+        <rect x="5.92871" y="17" width="10" height="10" rx="1" />
+        <rect x="5.92871" y="17" width="10" height="10" rx="1" stroke="white" stroke-width="3"
+            mask="url(#path-2-inside-2_4166_11179)" />
+        <rect x="22.9287" y="3.98937" width="8.5" height="8.5" rx="4.25" transform="rotate(45 22.9287 3.98937)"
+            stroke="white" stroke-width="1.5" />
+        <rect x="17.9287" y="17" width="10" height="10" rx="1" />
+        <rect x="17.9287" y="17" width="10" height="10" rx="1" stroke="white" stroke-width="3"
+            mask="url(#path-4-inside-3_4166_11179)" />
     </symbol>
     <symbol id="search" viewBox="0 0 20 20">
         <path
