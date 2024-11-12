@@ -13,6 +13,7 @@ const useProductsSearchStore = defineStore('productsSearchStore', () => {
     const { api } = useApi();
 
     const search = async (query: string) => {
+        if (query.length < 3) return;
         modalStore.openModal('search');
         isLoading.value = true;
         try {

@@ -1,16 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
     <symbol id="catalog" viewBox="0 0 32 32" fill="none">
-        <rect x="5.92871" y="5" width="10" height="10" rx="1" />
-        <rect x="5.92871" y="5" width="10" height="10" rx="1" stroke="white" stroke-width="3"
-            mask="url(#path-1-inside-1_4166_11179)" />
-        <rect x="5.92871" y="17" width="10" height="10" rx="1" />
-        <rect x="5.92871" y="17" width="10" height="10" rx="1" stroke="white" stroke-width="3"
-            mask="url(#path-2-inside-2_4166_11179)" />
-        <rect x="22.9287" y="3.98937" width="8.5" height="8.5" rx="4.25" transform="rotate(45 22.9287 3.98937)"
-            stroke="white" stroke-width="1.5" />
-        <rect x="17.9287" y="17" width="10" height="10" rx="1" />
-        <rect x="17.9287" y="17" width="10" height="10" rx="1" stroke="white" stroke-width="3"
-            mask="url(#path-4-inside-3_4166_11179)" />
+        <path
+            d="M14.9277 5H6.92773C6.37545 5 5.92773 5.44772 5.92773 6V14C5.92773 14.5523 6.37545 15 6.92773 15H14.9277C15.48 15 15.9277 14.5523 15.9277 14V6C15.9277 5.44772 15.48 5 14.9277 5Z"
+            stroke="var(--icon-color, currentColor)" stroke-width="1.5" />
+        <path
+            d="M14.9277 17H6.92773C6.37545 17 5.92773 17.4477 5.92773 18V26C5.92773 26.5523 6.37545 27 6.92773 27H14.9277C15.48 27 15.9277 26.5523 15.9277 26V18C15.9277 17.4477 15.48 17 14.9277 17Z"
+            stroke="var(--icon-color, currentColor)" stroke-width="1.5" />
+        <path
+            d="M25.9329 13.0049C27.5927 11.3451 27.5927 8.65419 25.9329 6.99446C24.2732 5.33473 21.5823 5.33473 19.9225 6.99446C18.2628 8.65419 18.2628 11.3451 19.9225 13.0049C21.5823 14.6646 24.2732 14.6646 25.9329 13.0049Z"
+            stroke="var(--icon-color, currentColor)" stroke-width="1.5" />
+        <path
+            d="M26.9277 17H18.9277C18.3754 17 17.9277 17.4477 17.9277 18V26C17.9277 26.5523 18.3754 27 18.9277 27H26.9277C27.48 27 27.9277 26.5523 27.9277 26V18C27.9277 17.4477 27.48 17 26.9277 17Z"
+            stroke="var(--icon-color, currentColor)" stroke-width="1.5" />
     </symbol>
     <symbol id="search" viewBox="0 0 20 20">
         <path

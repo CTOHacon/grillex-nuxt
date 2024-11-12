@@ -43,6 +43,7 @@ const splittedTitle = computed(() => props.title.split('<br>'));
 	justify-content: flex-end;
 	align-items: center;
 	cursor: pointer;
+	text-decoration: none;
 	@media (max-width: $tablet-width) {
 		min-height: 50vh;
 	}

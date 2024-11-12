@@ -1,10 +1,7 @@
 export default defineNuxtConfig({
     devtools: { enabled: true },
 
-    modules: [
-        '@nuxtjs/i18n',
-        '@pinia/nuxt',
-    ],
+    modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@nuxt/image'],
 
     sourcemap: true,
 

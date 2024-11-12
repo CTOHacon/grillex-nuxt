@@ -24,6 +24,7 @@
 			autocomplete="off"
 			:aria-label="$t('search_placeholder')"
 			v-model="value"
+			@input="debouncedSearch"
 		/>
 		<button
 			class="products-search-form__submit-button"
@@ -46,6 +47,14 @@ const isFocused = ref(false);
 const value = ref('');
 
 const useProductsSearch = useProductsSearchStore();
+
+let timeout: ReturnType<typeof setTimeout>;
+const debouncedSearch = () => {
+	clearTimeout(timeout);
+	timeout = setTimeout(() => {
+		useProductsSearch.search(value.value);
+	}, 300);
+};
 </script>
 
 <style scoped lang="scss">

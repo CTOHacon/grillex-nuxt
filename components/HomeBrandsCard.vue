@@ -47,6 +47,8 @@ a.home-brands-card {
 	img {
 		display: block;
 		width: 100%;
+		height: 100;
+		object-fit: contain;
 		filter: invert(1);
 		opacity: 0.5;
 		transition: opacity 0.3s ease-in-out;

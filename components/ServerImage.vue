@@ -1,7 +1,7 @@
 <template>
-	<img
+	<NuxtImg
 		v-if="mediaFile"
-		:src="getSizeUrl('full')"
+		:src="getSizeUrl(size ?? 'full')"
 		:alt="alt || mediaFile.title"
 		:loading="eager ? 'eager' : 'lazy'"
 		:srcset="srcsetAttribute"
@@ -13,11 +13,13 @@
 
 <script setup lang="ts">
 import useMediaFilesStore from '~/store/useMediaFilesStore';
+import type { TMediaFileSizeKey } from '~/types/TMediaFile';
 
 const props = defineProps<{
 	reference: string | number | undefined;
 	eager?: boolean;
 	alt: string;
+	size?: TMediaFileSizeKey;
 }>();
 
 const mediaFilesStore = useMediaFilesStore();

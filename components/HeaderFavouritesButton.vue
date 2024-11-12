@@ -2,7 +2,7 @@
 	<BaseIconButtonWithCount
 		icon="like"
 		:count="favoutitesStore.favouritesQuantity.value"
-		href="#"
+		href="/favorites"
 		:area-label="$t('favorites')"
 	/>
 </template>

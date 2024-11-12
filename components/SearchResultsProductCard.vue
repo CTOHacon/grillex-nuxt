@@ -1,18 +1,13 @@
 <template>
-	<article class="product-card">
+	<article class="search-results-product-card">
 		<!-- <ProductCardToCompareButton :product="product" />
 		<ProductCardExtraStatus :extraStatus="product.extraStatus" />
 		<ProductCardToFavouritesButton :product="product" /> -->
-		<ProductCardToFavouritesButton :product="product" />
-		<ProductCardStatuses
-			class="product-card__extra-status"
-			:product="product"
-		/>
 		<a
 			:href="productPath"
 			:aria-label="product.name"
 			:title="product.name"
-			class="product-card__image-wrapper"
+			class="search-results-product-card__image-wrapper"
 		>
 			<ServerImage
 				:reference="product.image"
@@ -20,24 +15,28 @@
 				size="thumbnail"
 			/>
 		</a>
-		<!-- <ProductCardAboutCredit :product="product" /> -->
-		<h3 class="product-card__name">
-			<a :href="productPath" class="reset-link" itemprop="url">
-				<span itemprop="name">{{ product.name }}</span>
-			</a>
-		</h3>
-		<div class="product-card__offer">
-			<p class="product-card__price">
-				<span class="product-card__price-value" itemprop="price">{{
-					productPrice
-				}}</span>
-				<span class="product-card__price-currency">{{
-					$t('uah')
-				}}</span>
-			</p>
-			<ProductCardCartButton
-				:product-variation="product.product_variations[0]"
-			/>
+		<div class="search-results-product-card__main">
+			<!-- <ProductCardAboutCredit :product="product" /> -->
+			<h3 class="search-results-product-card__name">
+				<a :href="productPath" class="reset-link" itemprop="url">
+					<span itemprop="name">{{ product.name }}</span>
+				</a>
+			</h3>
+			<div class="search-results-product-card__offer">
+				<p class="search-results-product-card__price">
+					<span
+						class="search-results-product-card__price-value"
+						itemprop="price"
+						>{{ productPrice }}</span
+					>
+					<span class="search-results-product-card__price-currency">{{
+						$t('uah')
+					}}</span>
+				</p>
+				<ProductCardCartButton
+					:product-variation="product.product_variations[0]"
+				/>
+			</div>
 		</div>
 	</article>
 </template>
@@ -45,9 +44,6 @@
 <script setup lang="ts">
 import type { TProduct } from '~/types/TProduct';
 import type { TLoadsProductVariations } from '~/types/TProductVariation';
-import ProductCardStatuses from './ProductCardStatuses.vue';
-import ProductCardToFavouritesButton from './ProductCardToFavouritesButton.vue';
-
 const props = defineProps<{
 	product: TProduct & TLoadsProductVariations;
 }>();
@@ -77,34 +73,33 @@ const isInStock = computed(() => {
 
 <style scoped lang="scss">
 @import '~/styles/variables.scss';
-.product-card {
+.search-results-product-card {
 	display: flex;
+	gap: 1rem;
 	height: 100%;
-	flex-direction: column;
-	padding: 1rem;
 	border: 0.0625rem solid #d4d4d4;
 	margin-right: -0.0625rem;
 	margin-bottom: -0.0625rem;
 	background: #fff;
 	position: relative;
-	cursor: pointer;
 	box-shadow: 0 0 0 0.0625rem transparent inset;
 	transition: box-shadow 0.3s ease;
+	border-radius: 0.25rem;
 }
-.product-card__extra-status {
-	position: absolute;
-	top: 1rem;
-	left: 50%;
-	transform: translateX(-50%);
+.search-results-product-card__main {
+	display: flex;
+	flex-direction: column;
+	padding: 0.5rem 1rem 0 0.5rem;
+	flex: 1;
+}
+.search-results-product-card__extra-status {
 	z-index: 3;
 }
-.product-card__image-wrapper {
+.search-results-product-card__image-wrapper {
 	position: relative;
 	aspect-ratio: 1 / 1;
-	width: 100%;
+	width: 5rem;
 	overflow: hidden;
-	margin-bottom: 0.5rem;
-	border: 0.25rem solid #fff;
 	img {
 		object-fit: cover;
 		width: 100%;
@@ -118,40 +113,45 @@ const isInStock = computed(() => {
 		max-height: 30vh;
 	}
 }
-.product-card:hover .product-card__image-wrapper img {
+.search-results-product-card:hover
+	.search-results-product-card__image-wrapper
+	img {
 	transform: scale(1.05);
 }
-.product-card:hover :deep(.product-card-about-credit__provider) img {
+.search-results-product-card:hover
+	:deep(.search-results-product-card-about-credit__provider)
+	img {
 	filter: sepia(0) saturate(100%);
 }
 
-.product-card__name {
+.search-results-product-card__name {
 	font-size: 1.125rem;
 	font-weight: 600;
 	margin-bottom: 0.25rem;
+	max-width: 20rem;
 }
-.product-card__offer {
+.search-results-product-card__offer {
 	margin-top: auto;
 	display: flex;
 	justify-content: space-between;
 	gap: 0.5rem;
 }
-.product-card__price {
+.search-results-product-card__price {
 	display: flex;
 	align-items: center;
 	font-weight: 600;
 }
-.product-card__price-value {
+.search-results-product-card__price-value {
 	font-size: 1rem;
 	margin-right: 0.25rem;
 }
-.product-card__price-currency {
+.search-results-product-card__price-currency {
 	font-size: 0.875rem;
 }
-.product-card__to-compare-button {
+.search-results-product-card__to-compare-button {
 	left: 1rem;
 }
-.product-card__to-favourites-button {
+.search-results-product-card__to-favourites-button {
 	right: 1rem;
 }
 </style>
