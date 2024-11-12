@@ -29,8 +29,8 @@
 			</div>
 			<NewProductsCarousel />
 			<CompanyAdvantages class="mt-3 mb-4" />
-			<ContactSection class="container mb-5-5" />
 		</div>
+		<ContactSection class="container mb-5-5" />
 	</AppLayout>
 </template>
 
