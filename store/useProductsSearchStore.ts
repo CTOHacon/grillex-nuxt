@@ -4,14 +4,16 @@ import { useApi } from '~/service/API';
 import useMediaFilesStore from './useMediaFilesStore';
 
 const useProductsSearchStore = defineStore('productsSearchStore', () => {
-
     const searchResult = ref<TProductsCatalog>();
     const isLoading = ref(false);
     const mediaFilesStore = useMediaFilesStore();
     const { api } = useApi();
 
     const search = async (query: string) => {
-        if (query.length < 3) return;
+        if (query.length < 3) {
+            searchResult.value = undefined;
+            return;
+        }
         isLoading.value = true;
         try {
             searchResult.value = await api<TProductsCatalog>(`/products/catalog`, {

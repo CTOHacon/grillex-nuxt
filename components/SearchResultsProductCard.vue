@@ -129,6 +129,9 @@ const isInStock = computed(() => {
 	font-weight: 600;
 	margin-bottom: 0.25rem;
 	max-width: 20rem;
+	@media (max-width: $mobile-width) {
+		font-size: 1rem;
+	}
 }
 .search-results-product-card__offer {
 	margin-top: auto;

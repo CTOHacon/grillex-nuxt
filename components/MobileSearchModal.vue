@@ -26,17 +26,33 @@
 					{{ $t('search') }}
 				</button>
 			</form>
-			<ul
-				class="mobile-search-modal__products"
-				v-if="!isLoading && searchResult?.products.data.length"
-			>
-				<li
-					v-for="product in searchResult?.products.data"
-					:key="product.id"
+			{{ value }}
+			<div class="mobile-search-modal__main">
+				<div v-if="isLoading" class="mobile-search-modal__message">
+					<SectionTitle size="4" tagname="h3">
+						{{ $t('loading') }}...
+					</SectionTitle>
+				</div>
+				<ul
+					class="mobile-search-modal__products"
+					v-if="!isLoading && searchResult?.products.data.length"
 				>
-					<SearchResultsProductCard :product="product" />
-				</li>
-			</ul>
+					<li
+						v-for="product in searchResult?.products.data"
+						:key="product.id"
+					>
+						<SearchResultsProductCard :product="product" />
+					</li>
+				</ul>
+				<div
+					v-if="!isLoading && !searchResult?.products.data.length"
+					class="mobile-search-modal__message"
+				>
+					<SectionTitle size="4" tagname="h3">
+						{{ $t('no_results') }}
+					</SectionTitle>
+				</div>
+			</div>
 		</div>
 	</BaseModal>
 </template>
@@ -45,6 +61,7 @@
 import useProductsSearchStore from '~/store/useProductsSearchStore';
 import BaseModal from './BaseModal.vue';
 import SearchResultsProductCard from './SearchResultsProductCard.vue';
+import SectionTitle from './SectionTitle.vue';
 
 const inputRef = ref<HTMLInputElement | null>(null);
 const value = ref('');
@@ -108,12 +125,21 @@ const { searchResult, isLoading } = storeToRefs(productsSearchStore);
 		background: #e4121f;
 	}
 }
-.mobile-search-modal__products {
+.mobile-search-modal__main {
 	flex: 1;
 	padding: 0 0.5rem 0.5rem 0.5rem;
 	overflow: auto;
+}
+.mobile-search-modal__products {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 0.25rem;
+}
+.mobile-search-modal__message {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 </style>
