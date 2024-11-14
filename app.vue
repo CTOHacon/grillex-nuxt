@@ -10,7 +10,7 @@ import useLocaleStore from './store/useLocaleStore';
 import useGlobalSettingsStorage from './store/useGlobalSettingsStore';
 import './styles/app.scss';
 import useCartStore from './store/useCartStore';
-import useFavouritesStore from './store/useFavouritesStrore';
+import useFavoritesStore from './store/useFavoritesStore';
 
 const { locale } = useI18n();
 useLocaleStore().changeLocale(locale.value);
@@ -25,9 +25,9 @@ onMounted(() => {
 	cartStore.syncCartWithServer();
 });
 
-const favoutitesStore = useFavouritesStore();
+const favoritesStore = useFavoritesStore();
 onMounted(() => {
-	favoutitesStore.syncFavouritesWithServer();
+	favoritesStore.syncFavoritesWithServer();
 });
 
 useHead({

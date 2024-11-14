@@ -4,6 +4,7 @@
 	<CartModal />
 	<SearchModal />
 	<slot />
+	<MobileSearchModal />
 	<BottomNavigationBar />
 	<Footer />
 </template>

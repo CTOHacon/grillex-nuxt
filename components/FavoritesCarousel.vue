@@ -10,11 +10,11 @@
 
 <script setup lang="ts">
 import ProductsCarousel from './ProductsCarousel.vue';
-import useFavouritesStore from '~/store/useFavouritesStrore';
+import useFavoritesStore from '~/store/useFavoritesStore';
 
-const favouritesStore = useFavouritesStore();
+const favoritesStore = useFavoritesStore();
 const products = computed<any>(() => {
-	return favouritesStore.favouriteItems.value
+	return favoritesStore.favoriteItems.value
 		.filter(item => item.product !== undefined)
 		.map(item => item.product);
 });

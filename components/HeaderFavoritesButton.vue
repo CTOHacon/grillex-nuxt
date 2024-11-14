@@ -1,17 +1,17 @@
 <template>
 	<BaseIconButtonWithCount
 		icon="like"
-		:count="favoutitesStore.favouritesQuantity.value"
+		:count="favoritesStore.favoritesQuantity.value"
 		href="/favorites"
 		:area-label="$t('favorites')"
 	/>
 </template>
 
 <script setup lang="ts">
-import useFavouritesStore from '~/store/useFavouritesStrore';
+import useFavoritesStore from '~/store/useFavoritesStore';
 import BaseIconButtonWithCount from './BaseIconButtonWithCount.vue';
 
-const favoutitesStore = useFavouritesStore();
+const favoritesStore = useFavoritesStore();
 </script>
 
 <style scoped lang="scss"></style>

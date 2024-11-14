@@ -1,15 +1,8 @@
 <template>
 	<Transition name="fade">
-		<KeepAlive>
-			<div
-				ref="modalRef"
-				class="base-modal"
-				:class="class"
-				v-show="isModalActive"
-			>
-				<slot />
-			</div>
-		</KeepAlive>
+		<div ref="modalRef" class="base-modal" v-show="isModalActive">
+			<slot />
+		</div>
 	</Transition>
 </template>
 

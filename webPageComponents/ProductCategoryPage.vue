@@ -13,7 +13,7 @@
 			</div>
 			<div class="product-category-page__sliders mb-4">
 				<NewProductsCarousel />
-				<FavouritesCarousel class="mt-3" />
+				<FavoritesCarousel class="mt-3" />
 				<CompanyAdvantages class="mt-3" />
 			</div>
 		</ProductsCatalogPageLayout>
@@ -41,7 +41,7 @@
 import Breadcrumbs from '~/components/Breadcrumbs.vue';
 import CompanyAdvantages from '~/components/CompanyAdvantages.vue';
 import ContactSection from '~/components/ContactSection.vue';
-import FavouritesCarousel from '~/components/FavouritesCarousel.vue';
+import FavoritesCarousel from '~/components/FavoritesCarousel.vue';
 import NewProductsCarousel from '~/components/NewProductsCarousel.vue';
 import ProductCategoryContent from '~/components/ProductCategoryContent.vue';
 import ProductsCatalog from '~/components/ProductsCatalog.vue';

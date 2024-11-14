@@ -24,7 +24,7 @@
 		<div class="prodcut-page__sliders">
 			<SeparatorLine class="mb-3" />
 			<NewProductsCarousel />
-			<FavouritesCarousel class="mt-3" />
+			<FavoritesCarousel class="mt-3" />
 		</div>
 	</main>
 </template>

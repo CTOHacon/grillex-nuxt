@@ -134,6 +134,9 @@ const isInCart = computed(
 	align-items: center;
 	justify-content: end;
 	margin-top: auto;
+	@media (max-width: $mobile-width) {
+		margin-top: 1rem;
+	}
 }
 .home-promotion-area-product-card__cart-button {
 	border-radius: 0.75rem;
@@ -156,6 +159,9 @@ const isInCart = computed(
 	@media (max-width: $tablet-width) {
 		flex: 100%;
 		margin-top: 1rem;
+	}
+	@media (max-width: $mobile-width) {
+		margin-top: 0;
 	}
 }
 </style>

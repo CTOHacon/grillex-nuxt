@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import useModalStateStore from './useModalStateStore';
 import type { TProductsCatalog } from '~/types/TProductsCatalog';
 import { useApi } from '~/service/API';
 import useMediaFilesStore from './useMediaFilesStore';
@@ -8,13 +7,11 @@ const useProductsSearchStore = defineStore('productsSearchStore', () => {
 
     const searchResult = ref<TProductsCatalog>();
     const isLoading = ref(false);
-    const modalStore = useModalStateStore();
     const mediaFilesStore = useMediaFilesStore();
     const { api } = useApi();
 
     const search = async (query: string) => {
         if (query.length < 3) return;
-        modalStore.openModal('search');
         isLoading.value = true;
         try {
             searchResult.value = await api<TProductsCatalog>(`/products/catalog`, {

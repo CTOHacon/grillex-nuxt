@@ -11,10 +11,10 @@
 		</button> -->
 		<button
 			class="product-page-controls-bar-buttons__button"
-			:class="{ _active: isInFavourites }"
+			:class="{ _active: isInFavorites }"
 			@click="
 				productVariation?.product &&
-					favouritesStore.toggleItemInFavourites(
+					favoritesStore.toggleItemInFavorites(
 						productVariation?.product
 					)
 			"
@@ -37,18 +37,18 @@
 </template>
 
 <script setup lang="ts">
-import useFavouritesStore from '~/store/useFavouritesStrore';
+import useFavoritesStore from '~/store/useFavoritesStore';
 import useProductVariationForWebPageStore from '~/store/useProductVariationForWebPageStore';
 import SvgIcon from './SvgIcon.vue';
 
 const productVariationStore = useProductVariationForWebPageStore();
 const { data: productVariation } = storeToRefs(productVariationStore);
 
-const favouritesStore = useFavouritesStore();
-const isInFavourites = computed(
+const favoritesStore = useFavoritesStore();
+const isInFavorites = computed(
 	() =>
 		productVariation.value &&
-		favouritesStore.isInFavourites(productVariation.value?.product_id)
+		favoritesStore.isInFavorites(productVariation.value?.product_id)
 );
 
 const scrollToTop = () => {

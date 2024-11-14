@@ -41,10 +41,13 @@
 import { ref } from 'vue';
 import SvgIcon from './SvgIcon.vue';
 import useProductsSearchStore from '~/store/useProductsSearchStore';
+import useModalStateStore from '~/store/useModalStateStore';
 
 const inputRef = ref<HTMLInputElement | null>(null);
 const isFocused = ref(false);
 const value = ref('');
+
+const modalStore = useModalStateStore();
 
 const useProductsSearch = useProductsSearchStore();
 
@@ -53,6 +56,7 @@ const debouncedSearch = () => {
 	clearTimeout(timeout);
 	timeout = setTimeout(() => {
 		useProductsSearch.search(value.value);
+		modalStore.openModal('search');
 	}, 300);
 };
 </script>
@@ -83,9 +87,9 @@ const debouncedSearch = () => {
 	cursor: pointer;
 }
 .products-search-form__icon {
-	width: 1.25rem;
-	height: 1.25rem;
 	color: #d4d4d4;
+	width: 2.5rem;
+	height: 2.5rem;
 }
 .products-search-form__input {
 	height: 100%;

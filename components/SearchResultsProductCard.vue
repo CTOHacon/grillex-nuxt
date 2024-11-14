@@ -2,7 +2,7 @@
 	<article class="search-results-product-card">
 		<!-- <ProductCardToCompareButton :product="product" />
 		<ProductCardExtraStatus :extraStatus="product.extraStatus" />
-		<ProductCardToFavouritesButton :product="product" /> -->
+		<ProductCardToFavoritesButton :product="product" /> -->
 		<a
 			:href="productPath"
 			:aria-label="product.name"
@@ -151,7 +151,7 @@ const isInStock = computed(() => {
 .search-results-product-card__to-compare-button {
 	left: 1rem;
 }
-.search-results-product-card__to-favourites-button {
+.search-results-product-card__to-favorites-button {
 	right: 1rem;
 }
 </style>

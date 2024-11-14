@@ -41,11 +41,11 @@ import ContactSection from '~/components/ContactSection.vue';
 import NewProductsCarousel from '~/components/NewProductsCarousel.vue';
 import SectionTitle from '~/components/SectionTitle.vue';
 import AppLayout from '~/layouts/AppLayout.vue';
-import useFavouritesStore from '~/store/useFavouritesStrore';
+import useFavoritesStore from '~/store/useFavoritesStore';
 
-const favouritesStore = useFavouritesStore();
+const favoritesStore = useFavoritesStore();
 const products = computed<any>(() => {
-	return favouritesStore.favouriteItems.value
+	return favoritesStore.favoriteItems.value
 		.filter(item => item.product !== undefined)
 		.map(item => item.product);
 });
@@ -68,6 +68,12 @@ useHead({
 .products-list {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
+	@media (max-width: $middle-desktop-width) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	@media (max-width: $tablet-width) {
+		grid-template-columns: repeat(3, 1fr);
+	}
 	@media (max-width: $mobile-width) {
 		grid-template-columns: 1fr;
 	}

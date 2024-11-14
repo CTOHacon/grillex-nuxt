@@ -29,6 +29,8 @@ const props = defineProps<{
 </script>
 
 <style scoped lang="scss">
+@import '~/styles/variables.scss';
+
 .base-icon-button-with-count {
 	position: relative;
 	display: flex;
@@ -53,6 +55,9 @@ const props = defineProps<{
 	height: 2.125rem;
 	width: 2.125rem;
 	transition: color 0.2s ease-in-out;
+	@media (max-width: $mobile-width) {
+		color: #fff;
+	}
 }
 .base-icon-button-with-count__count-wrapper {
 	position: absolute;

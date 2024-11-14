@@ -2,8 +2,8 @@
 	<article class="product-card">
 		<!-- <ProductCardToCompareButton :product="product" />
 		<ProductCardExtraStatus :extraStatus="product.extraStatus" />
-		<ProductCardToFavouritesButton :product="product" /> -->
-		<ProductCardToFavouritesButton :product="product" />
+		<ProductCardToFavoritesButton :product="product" /> -->
+		<ProductCardToFavoritesButton :product="product" />
 		<ProductCardStatuses
 			class="product-card__extra-status"
 			:product="product"
@@ -46,7 +46,7 @@
 import type { TProduct } from '~/types/TProduct';
 import type { TLoadsProductVariations } from '~/types/TProductVariation';
 import ProductCardStatuses from './ProductCardStatuses.vue';
-import ProductCardToFavouritesButton from './ProductCardToFavouritesButton.vue';
+import ProductCardToFavoritesButton from './ProductCardToFavoritesButton.vue';
 
 const props = defineProps<{
 	product: TProduct & TLoadsProductVariations;
@@ -151,7 +151,7 @@ const isInStock = computed(() => {
 .product-card__to-compare-button {
 	left: 1rem;
 }
-.product-card__to-favourites-button {
+.product-card__to-favorites-button {
 	right: 1rem;
 }
 </style>

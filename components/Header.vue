@@ -23,7 +23,7 @@
 		<CatalogModalToggleButton class="header__toggle-catalog" />
 		<ProductsSearchForm class="header__search none-tw" />
 		<div class="header__buttons-group">
-			<HeaderFavouritesButton
+			<HeaderFavoritesButton
 				:class="isScrollingToBottom ? 'fs-0-875' : 'fs-1'"
 			/>
 			<CartModalToggleButton :active="false" />
@@ -38,7 +38,7 @@ import useWebPageStore from '~/store/useWebPageStore';
 import BaseHeader from './BaseHeader.vue';
 import CatalogModalToggleButton from './CatalogModalToggleButton.vue';
 import CartModalToggleButton from './CartModalToggleButton.vue';
-import HeaderFavouritesButton from './HeaderFavouritesButton.vue';
+import HeaderFavoritesButton from './HeaderFavoritesButton.vue';
 import UsePreloader from './UsePreloader.vue';
 import useCartStore from '~/store/useCartStore';
 import useModalStateStore from '~/store/useModalStateStore';
