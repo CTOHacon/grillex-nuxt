@@ -30,15 +30,6 @@ const isModalActive = computed(() =>
 // References
 const modalRef = ref<HTMLElement | null>(null);
 
-// Handle locking/unlocking scroll based on modal state
-const handleLockScroll = (activeModal: TModalTypes | null) => {
-	// if (activeModal && props.lockScroll) {
-	// 	document.documentElement.classList.add('overflow-hidden');
-	// } else {
-	// 	document.documentElement.classList.remove('overflow-hidden');
-	// }
-};
-
 // Handle click outside the modal inner to close it
 const handleClickOutside = (e: MouseEvent) => {
 	if (modalRef.value && e.target === modalRef.value) {
@@ -53,12 +44,10 @@ onMounted(() => {
 onUnmounted(() => {
 	modalRef.value?.removeEventListener('click', handleClickOutside);
 });
-
-// Watch for changes in modal state
-watch(() => modalStateStore.activeModal, handleLockScroll);
 </script>
 
 <style scoped lang="scss">
+@import '~/styles/variables.scss';
 .base-modal {
 	position: fixed;
 	left: 0;
@@ -68,5 +57,8 @@ watch(() => modalStateStore.activeModal, handleLockScroll);
 	z-index: 10;
 	background: rgba(0, 0, 0, 0.2);
 	top: var(--header-height); // If leaveHeaderSpace is true, adjust this.
+	@media (max-width: $mobile-width) {
+		bottom: 4rem;
+	}
 }
 </style>
