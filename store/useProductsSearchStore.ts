@@ -14,6 +14,7 @@ const useProductsSearchStore = defineStore('productsSearchStore', () => {
             searchResult.value = undefined;
             return;
         }
+        query = query.trim().toLowerCase();
         isLoading.value = true;
         try {
             searchResult.value = await api<TProductsCatalog>(`/products/catalog`, {

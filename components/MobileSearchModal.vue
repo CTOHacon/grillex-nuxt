@@ -26,7 +26,6 @@
 					{{ $t('search') }}
 				</button>
 			</form>
-			{{ value }}
 			<div class="mobile-search-modal__main">
 				<div v-if="isLoading" class="mobile-search-modal__message">
 					<SectionTitle size="4" tagname="h3">
